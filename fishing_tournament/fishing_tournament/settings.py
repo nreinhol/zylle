@@ -29,7 +29,7 @@ SECRET_KEY = '*t%19sgywedr%7=3%p!%liy1)u$akgl-mjj9an0*=^h(-cn_7p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [fishing.pythonanywhere.com]
+ALLOWED_HOSTS = []
 
 
 # Application definition
