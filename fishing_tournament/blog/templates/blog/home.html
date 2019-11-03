@@ -1,30 +1,58 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <div class="jumbotron">
-      <h1 class="display-4">Petri Heil!</h1>
-      <p class="lead">Wer hat den längsten?</p>
-      <hr class="my-4">
-      <p>Zeige allen das du den längsten hast und trage deinen neuen Fang ein</p>
-      <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Neuer Fang</a>
-      </p>
-    </div>
 
-    <table class="table table-dark">
-        <thead>
-            <th scope="col">Teilnehmer</th>
-            <th scope="col">Fisch</th>
-            <th scope="col">Länge </th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for post in posts %}
-            <tr>
-                <th scope="row"> {{ post.author }} </th> 
-                <td> {{ post.fish_type }} </td>
-                <td> {{ post.fish_length }} cm </td>
+<!-- Masthead -->
+<header class="masthead">
+  <div class="container h-100">
+      <div class="row">
+          <div class="col-md-12">
+            
+            <div class="row h-100 align-items-center justify-content-center text-center">
+              <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold">Petri Heil</h1>
+                <hr class="divider my-4">
+              </div>
+              <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-75 font-weight-light mb-5">Wer fängt den längsten? Trage deinen neuen Fang ein.</p>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#">Neuer Fang</a>
+              </div>
+            </div>
+
+          </div>
+      </div>
+  </div>
+</header>
+
+<!-- About Section -->
+<section class="page-section bg-primary" id="about">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        
+        <table class="table table-dark">
+          <thead>
+              <th scope="col">Teilnehmer</th>
+              <th scope="col">Fisch</th>
+              <th scope="col">Länge </th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+              {% for post in posts %}
+              <tr>
+                  <th scope="row"> {{ post.author }} </th> 
+                  <td> {{ post.fish_type }} </td>
+                  <td> {{ post.fish_length }} cm </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    
 {% endblock content %}

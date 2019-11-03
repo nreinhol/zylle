@@ -13,6 +13,6 @@ def home(request):
 
     return render(request, 'blog/home.html', context)
 
-@login_required
-def about(request):
-    return render(request, 'blog/about.html')
+
+def start(request):
+    return render(request, 'blog/start.html')

@@ -26,10 +26,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
-    path('', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('login', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='blog/start.html'), name='logout'),
     path('home/', blog_views.home, name='blog-home'),
-    path('about/', blog_views.about, name='blog-about')
+    path('', blog_views.start, name='blog-start')
 ]
 
 if settings.DEBUG:
