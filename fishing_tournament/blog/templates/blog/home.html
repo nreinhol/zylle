@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="jumbotron">
+      <h1 class="display-4">Petri Heil!</h1>
+      <p class="lead">Wer hat den längsten?</p>
+      <hr class="my-4">
+      <p>Zeige allen das du den längsten hast und trage deinen neuen Fang ein</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Neuer Fang</a>
+      </p>
+    </div>
+
+    <table class="table table-dark">
+        <thead>
+            <th scope="col">Teilnehmer</th>
+            <th scope="col">Fisch</th>
+            <th scope="col">Länge </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <th scope="row"> {{ post.author }} </th> 
+                <td> {{ post.fish_type }} </td>
+                <td> {{ post.fish_length }} cm </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+{% endblock content %}
