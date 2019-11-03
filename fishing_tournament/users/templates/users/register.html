@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/base_out.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
@@ -8,7 +8,7 @@
             <fieldset class="form-group">
                 <div class="text-center">
                     <img class="mb-4" src="{% static "blog/logo.png" %}" alt="" width="72" height="72">
-                    <legend class="border-bottom mb-4">Registrieren</legend>
+                    <h2>Registrieren</h2>
                 </div>
                 {{ form|crispy}}
             </fieldset>
@@ -18,10 +18,8 @@
                 </button>
             </div>
         </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Hast du bereits ein Account? <a class="ml-2" href="{% url 'login' %}">Anmelden</a>
-            </small>
-        </div>
+        <small class="text-muted">
+            Hast du bereits ein Account? <a class="ml-2" href="{% url 'login' %}">Anmelden</a>
+        </small>
     </div>
 {% endblock content %}

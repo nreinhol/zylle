@@ -6,6 +6,7 @@ body {
   
   h1, h2, h3, h4, h5, h6 {
     color: #444444;
+    font-family: 'Lexend Deca', sans-serif;
   }
   
   ul {
@@ -82,3 +83,11 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  .bg{
+    background-size: 1800px 900px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}
+
