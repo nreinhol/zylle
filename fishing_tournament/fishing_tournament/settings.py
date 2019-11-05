@@ -9,9 +9,6 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 
-CHANGE FOR PRODUCTION:
-DEBUG = False
-ALLOWED_HOSTS = ['fishing.pythonanywhere.com']
 """
 
 import os
@@ -28,8 +25,10 @@ SECRET_KEY = '*t%19sgywedr%7=3%p!%liy1)u$akgl-mjj9an0*=^h(-cn_7p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['fishing.pythonanywhere.com']
 
 
 # Application definition

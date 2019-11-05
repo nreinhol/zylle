@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+
 
 from blog.models import Post
 
@@ -12,7 +12,3 @@ def home(request):
     }
 
     return render(request, 'blog/home.html', context)
-
-
-def start(request):
-    return render(request, 'blog/start.html')
