@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card border-left-primary shadow h-100 py-2">
+    <div class="card-body">
+        <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="h4 mb-0 font-weight-bold text-primary text-uppercase mb-1"><a href="#">{{ object.author }}</a></div>
+                <div class="h6 mb-0 font-weight-bold text-gray-800"><i class="fas fa-calendar-alt"></i> {{ object.date_posted|date:"d. F Y"}}</div>
+                <div class="h6 mb-0 font-weight-bold text-gray-800"><i class="fas fa-fish"></i> {{ object.fish_type}}</div>
+                <div class="h6 mb-0 font-weight-bold text-gray-800"><i class="fas fa-ruler"></i> {{ object.fish_length}} cm</div>
+            </div>
+            <div class="col-auto">
+                <img class="img-thumbnail" style="width: 15rem;" src="{{ object.img.url }}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

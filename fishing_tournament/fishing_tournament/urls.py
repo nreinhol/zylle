@@ -21,14 +21,25 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from users import views as user_views
 from blog import views as blog_views
+from blog.views import (
+    PostListView, 
+    PostDetailView, 
+    PostCreateView,
+    PostUpdateView,
+    PostDeleteView
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
     path('', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='blog/start.html'), name='logout'),
-    path('home/', blog_views.home, name='blog-home')
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('posts/', PostListView.as_view(), name='posts'),
+    path('posts/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('posts/<int:pk>/update', PostUpdateView.as_view(), name='post-update'),
+    path('posts/<int:pk>/delete', PostDeleteView.as_view(), name='post-delete'),
+    path('posts/new/', PostCreateView.as_view(), name='post-create')
 ]
 
 if settings.DEBUG:

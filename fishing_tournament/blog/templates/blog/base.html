@@ -30,8 +30,8 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'blog-home' %}">
-        <div class="sidebar-brand-icon rotate-n-15">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'posts' %}">
+        <div class="sidebar-brand-icon">
             <i class="fas fa-fish"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Fishing Tournament</sup></div>
@@ -42,14 +42,14 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'blog-home' %}">
+        <a class="nav-link" href="{% url 'posts' %}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
 
       <!-- Nav Item - Posts -->
       <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog-home' %}">
+            <a class="nav-link" href="{% url 'posts' %}">
             <i class="fas fa-fw fa-clipboard"></i>
             <span>Posts</span></a>
       </li>
@@ -81,6 +81,12 @@
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'post-create' %}">
+                  <i class="fas fa-fw fa-plus"></i>
+                </a>
+            </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -132,7 +138,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>&copy; Niklas R.</span>
+            <span>&copy; N.R.</span>
           </div>
         </div>
       </footer>
@@ -162,7 +168,7 @@
         <div class="modal-body">Wähle "Abmelden", wenn du bereit bist, deine aktuelle Sitzung zu beenden.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
-          <a class="btn btn-primary" href="{% url 'login' %}">Abmelden</a>
+          <a class="btn btn-primary" href="{% url 'logout' %}">Abmelden</a>
         </div>
       </div>
     </div>

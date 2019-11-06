@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">{{ object.author }}</h1>
+                    <div class="text-center"><i class="fas fa-calendar-alt"></i> {{ object.date_posted|date:"d. F Y"}}</div>
+                    <div class="text-center"><i class="fas fa-fish"></i> {{ object.fish_type}}</div>
+                    <div class="text-center"><i class="fas fa-ruler"></i> {{ object.fish_length}} cm</div>
+                    <hr>
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{ object.img.url }}" alt="">
+                  </div>
+                  {% if object.author == user %}
+                  <div class="form-group">
+                        <a class="btn btn-lg btn-info btn-block" href="{% url 'post-update' object.id %}">
+                            Bearbeiten
+                        </a>
+                        <a class="btn btn-lg btn-danger btn-block" href="{% url 'post-delete' object.id %}">
+                            Löschen
+                        </a>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+</div>
+
+{% endblock content %}
