@@ -4,29 +4,34 @@
 <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
+
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary"><img class="rounded-circle" src="{{ post.author.profile.image.url }}" style="width: 2rem;"> {{ object.author }}</h6>
+                {% if object.author == user %}
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'post-update' object.id %}">Bearbeiten</a>
+                        <a class="dropdown-item" href="{% url 'post-delete' object.id %}">Löschen</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">{{ object.author }}</h1>
                     <div class="text-center"><i class="fas fa-calendar-alt"></i> {{ object.date_posted|date:"d. F Y"}}</div>
                     <div class="text-center"><i class="fas fa-fish"></i> {{ object.fish_type}}</div>
                     <div class="text-center"><i class="fas fa-ruler"></i> {{ object.fish_length}} cm</div>
                     <hr>
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{ object.img.url }}" alt="">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="{{ object.img.url }}" alt="">
                   </div>
-                  {% if object.author == user %}
-                  <div class="form-group">
-                        <a class="btn btn-lg btn-info btn-block" href="{% url 'post-update' object.id %}">
-                            Bearbeiten
-                        </a>
-                        <a class="btn btn-lg btn-danger btn-block" href="{% url 'post-delete' object.id %}">
-                            Löschen
-                        </a>
-                  </div>
-                  {% endif %}
                 </div>
               </div>
             </div>
