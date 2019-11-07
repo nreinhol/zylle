@@ -19,10 +19,9 @@ from django.views.static import serve
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from users import views as user_views
 from blog import data as data_views
-from blog import views as blog_views
 from blog.views import (
+    dashboard,
     PostListView, 
     PostDetailView, 
     PostCreateView,
@@ -30,11 +29,20 @@ from blog.views import (
     PostDeleteView
 )
 
+from users.views import (
+    register,
+    ProfileListView,
+    ProfileDetailView,
+    ProfileUpdateView
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', user_views.register, name='register'),
-    path('profile/', user_views.profile, name='profile'),
-    path('dashboard/', blog_views.dashboard, name='dashboard'),
+    path('register/', register, name='register'),
+    path('profiles/', ProfileListView.as_view(), name='profiles'),
+    path('profiles/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),
+    path('profiles/<int:pk>/update', ProfileUpdateView.as_view(), name='profile-update'),
+    path('dashboard/', dashboard, name='dashboard'),
     path('', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('posts/', PostListView.as_view(), name='posts'),
