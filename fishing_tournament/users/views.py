@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import UserRegisterForm
+from .models import Profile
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -44,6 +45,23 @@ class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['username', 'first_name', 'last_name', 'email'] 
     success_url = '/profiles'
     template_name = 'users/profile_form_update.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        user_profile = self.get_object()
+        if self.request.user.id == user_profile.id:
+            return True
+        return False
+
+
+class ProfileImageUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Profile
+    fields = ['image'] 
+    success_url = '/profiles'
+    template_name = 'users/profile_img_form_update.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user

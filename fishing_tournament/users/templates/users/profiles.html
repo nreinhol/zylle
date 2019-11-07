@@ -21,7 +21,7 @@
                                 <div class="h7 mb-0 text-gray-600"><i class="fas fa-file-signature"></i> {{ user.date_joined|date:"d. M 'y"}}</div>
                             </div>
                             <div class="col-auto">
-                                    <a href="{% url 'profile-detail' user.id %}"><img class="rounded-circle" style="width: 8rem;" src="{{ user.profile.image.url }}" alt=""></a>
+                                    <a href="{% url 'profile-detail' user.id %}"><img class="rounded-circle" style="width: 8rem; height: 8rem;" src="{{ user.profile.image.url }}" alt=""></a>
                             </div>
                         </div>
                     </div>

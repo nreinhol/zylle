@@ -33,7 +33,8 @@ from users.views import (
     register,
     ProfileListView,
     ProfileDetailView,
-    ProfileUpdateView
+    ProfileUpdateView,
+    ProfileImageUpdateView
 )
 
 urlpatterns = [
@@ -42,6 +43,7 @@ urlpatterns = [
     path('profiles/', ProfileListView.as_view(), name='profiles'),
     path('profiles/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),
     path('profiles/<int:pk>/update', ProfileUpdateView.as_view(), name='profile-update'),
+    path('profiles/<int:pk>/update_img', ProfileImageUpdateView.as_view(), name='profile-update-img'),
     path('dashboard/', dashboard, name='dashboard'),
     path('', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),

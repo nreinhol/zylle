@@ -9934,6 +9934,10 @@ a:focus {
   width: 2rem;
 }
 
+.img-profile-custom {
+  border-radius: 50%;
+}
+
 .topbar {
   height: 4.375rem;
 }
