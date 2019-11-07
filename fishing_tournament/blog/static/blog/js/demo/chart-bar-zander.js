@@ -42,9 +42,9 @@ $.ajax({
           labels: data_barcharts.label_data,
           datasets: [{
             label: "Zander",
-            backgroundColor: "#4e73df",
-            hoverBackgroundColor: "#2e59d9",
-            borderColor: "#4e73df",
+            backgroundColor: "#1cc88a",
+            hoverBackgroundColor: "#10734f",
+            borderColor: "#1cc88a",
             data: data_barcharts.zander_data,
           }
         ],

@@ -42,9 +42,9 @@ $.ajax({
           labels: data_barcharts.label_data,
           datasets: [{
             label: "Hecht",
-            backgroundColor: "#4e73df",
-            hoverBackgroundColor: "#2e59d9",
-            borderColor: "#4e73df",
+            backgroundColor: "#f6c23e",
+            hoverBackgroundColor: "#ba8809",
+            borderColor: "#f6c23e",
             data: data_barcharts.hecht_data,
           }
         ],
