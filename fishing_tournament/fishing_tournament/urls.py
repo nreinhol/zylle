@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from users import views as user_views
+from blog import data as data_views
 from blog import views as blog_views
 from blog.views import (
     PostListView, 
@@ -40,7 +41,9 @@ urlpatterns = [
     path('posts/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('posts/<int:pk>/update', PostUpdateView.as_view(), name='post-update'),
     path('posts/<int:pk>/delete', PostDeleteView.as_view(), name='post-delete'),
-    path('posts/new/', PostCreateView.as_view(), name='post-create')
+    path('posts/new/', PostCreateView.as_view(), name='post-create'),
+    path('data/', data_views.get_dummy_data),
+    path('data_barcharts/', data_views.create_data)
 ]
 
 if settings.DEBUG:

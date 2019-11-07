@@ -1,19 +1,49 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
-
-<!-- Bar Chart -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-    </div>
-    <div class="card-body">
-        <div class="chart-bar">
-        <canvas id="myBarChart"></canvas>
+<div class="row">
+    <div class="col-xl-8 col-lg-7">
+    
+    <!-- Bar Chart Barsch -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Division - Barsch</h6>
         </div>
-        <hr>
-        Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
+        <div class="card-body">
+            <div class="chart-bar">
+            <canvas id="chart-bar-barsch"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bar Chart Zander -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Division - Zander</h6>
+        </div>
+        <div class="card-body">
+            <div class="chart-bar">
+            <canvas id="chart-bar-zander"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bar Chart Hecht -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Division - Hecht</h6>
+        </div>
+        <div class="card-body">
+            <div class="chart-bar">
+            <canvas id="chart-bar-hecht"></canvas>
+            </div>
+        </div>
+    </div>
+
     </div>
 </div>
+
+
+
 
 {% endblock content %}
