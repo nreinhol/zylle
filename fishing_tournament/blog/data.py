@@ -19,9 +19,6 @@ def get_dummy_data(request):
 def get_all_userids_of_posts(request):
     user_ids_tuple = list(Post.objects.values_list('author').distinct())
     user_ids = [ids_tuple[0] for ids_tuple in user_ids_tuple]
-    
-    # remove admin because should not displayed in charts 
-    del user_ids[0]
 
     return user_ids
 
