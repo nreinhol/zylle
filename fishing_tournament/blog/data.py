@@ -42,20 +42,35 @@ def create_data(request):
     barsch_data = []
     hecht_data = []
     zander_data = []
+    overall_data = []
 
     user_ids = get_all_userids_of_posts(request)
     
     for user_id in user_ids:
         usernames.append(get_username_of_userid(user_id, request))
-        barsch_data.append(get_sum_longest_fishes_of_user(user_id, 'Barsch', request))
-        hecht_data.append(get_sum_longest_fishes_of_user(user_id, 'Hecht', request))
-        zander_data.append(get_sum_longest_fishes_of_user(user_id, 'Zander', request))
+        
+        # get sum of longest barsch of user
+        user_barsch = get_sum_longest_fishes_of_user(user_id, 'Barsch', request)
+        barsch_data.append(user_barsch)
+        
+        # get sum of longest hecht of user
+        user_hecht = get_sum_longest_fishes_of_user(user_id, 'Hecht', request)
+        hecht_data.append(user_hecht)
+        
+        # get sum of longest zander of user
+        user_zander = get_sum_longest_fishes_of_user(user_id, 'Zander', request)
+        zander_data.append(user_zander)
+
+        # calc overall score of user
+        overall_data.append(user_barsch + user_hecht + user_zander)
+
 
     data = {
         'label_data': usernames,
         'barsch_data': barsch_data,
         'hecht_data': hecht_data,
         'zander_data': zander_data,
+        'overall_data': overall_data
     }
 
     return JsonResponse(data)
