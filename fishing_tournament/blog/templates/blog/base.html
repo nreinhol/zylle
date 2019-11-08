@@ -18,6 +18,7 @@
 
   <!-- Custom styles for this template-->
   <link href="{% static 'blog/css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link href="{% static 'blog/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
 </head>
 
@@ -46,6 +47,14 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
+      <!-- Nav Item - Tabelle -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'table' %}">
+            <i class="fas fa-table"></i>
+        <span>Tabelle</span></a>
+      </li>
+    
 
       <!-- Nav Item - Posts -->
       <li class="nav-item">
@@ -199,6 +208,11 @@
   <script src="{% static 'blog/js/demo/chart-bar-barsch.js' %}"></script>
   <script src="{% static 'blog/js/demo/chart-bar-hecht.js' %}"></script>
   <script src="{% static 'blog/js/demo/chart-bar-zander.js' %}"></script>
+
+    <!-- Plugin Data Tables -->
+    <script src="{% static 'blog/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'blog/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'blog/js/demo/datatables-demo.js' %}"></script>    
 
 </body>
 

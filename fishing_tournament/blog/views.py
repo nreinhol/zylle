@@ -75,8 +75,13 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 @login_required
 def dashboard(request):
+    return render(request, 'blog/dashboard.html')
+
+
+@login_required
+def table(request):
     context = {
         'posts': Post.objects.all()
     }
 
-    return render(request, 'blog/dashboard.html', context)
+    return render(request, 'blog/table.html', context)
