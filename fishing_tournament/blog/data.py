@@ -35,11 +35,24 @@ def get_username_of_userid(user_id, request):
 
 
 def create_data(request):
+    barsch_faktor = 2
+    zander_faktor = 1.5
+    hecht_faktor = 1
+
     usernames = []
+
+    # real_fish_length
     barsch_data = []
     hecht_data = []
     zander_data = []
     overall_data = []
+
+    # fish_points
+    barsch_point_data = []
+    hecht_point_data = []
+    zander_point_data = []
+    overall_point_data = []
+
 
     user_ids = get_all_userids_of_posts(request)
     
@@ -49,17 +62,26 @@ def create_data(request):
         # get sum of longest barsch of user
         user_barsch = get_sum_longest_fishes_of_user(user_id, 'Barsch', request)
         barsch_data.append(user_barsch)
+
+        user_barsch_point = user_barsch*barsch_faktor
+        barsch_point_data.append(user_barsch_point)
         
         # get sum of longest hecht of user
         user_hecht = get_sum_longest_fishes_of_user(user_id, 'Hecht', request)
         hecht_data.append(user_hecht)
+
+        user_hecht_point = user_hecht*hecht_faktor
+        hecht_point_data.append(user_hecht_point)
         
         # get sum of longest zander of user
         user_zander = get_sum_longest_fishes_of_user(user_id, 'Zander', request)
         zander_data.append(user_zander)
 
+        user_zander_point = user_zander*zander_faktor
+        zander_point_data.append(user_zander_point)
+
         # calc overall score of user
-        overall_data.append(user_barsch + user_hecht + user_zander)
+        overall_data.append(user_barsch_point + user_hecht_point + user_zander_point)
 
 
     data = {

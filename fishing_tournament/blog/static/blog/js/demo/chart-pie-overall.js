@@ -35,7 +35,7 @@ $.ajax({
                 callbacks: {
                     label: function(tooltipItem, data) { 
                         var indice = tooltipItem.index;                 
-                        return data.labels[indice] +' : '+data.datasets[0].data[indice] + 'cm';
+                        return data.labels[indice] +' : '+data.datasets[0].data[indice] + ' Punkte';
                     }
                 }
               },
