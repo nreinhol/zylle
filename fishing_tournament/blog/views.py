@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from . import data as data_views
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -75,7 +76,10 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 @login_required
 def dashboard(request):
-    return render(request, 'blog/dashboard.html')
+    context = {
+        'sorted_tuple_list': data_views.create_data(request, json_format=False)
+    }
+    return render(request, 'blog/dashboard.html', context)
 
 
 @login_required

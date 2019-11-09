@@ -34,7 +34,7 @@ def get_username_of_userid(user_id, request):
     return User.objects.filter(id=user_id)[0].username
 
 
-def create_data(request):
+def create_data(request, json_format=True):
     barsch_faktor = 2
     zander_faktor = 1.5
     hecht_faktor = 1
@@ -45,13 +45,15 @@ def create_data(request):
     barsch_data = []
     hecht_data = []
     zander_data = []
-    overall_data = []
 
     # fish_points
     barsch_point_data = []
     hecht_point_data = []
     zander_point_data = []
-    overall_point_data = []
+    
+    # overall data lists
+    overall_data = []
+    sorted_overall_data = []
 
 
     user_ids = get_all_userids_of_posts(request)
@@ -83,13 +85,23 @@ def create_data(request):
         # calc overall score of user
         overall_data.append(user_barsch_point + user_hecht_point + user_zander_point)
 
+        # get sorted list of overall points organized in tuples
+        sorted_overall_data = sorted(list(zip(usernames, overall_data)), key=lambda tup: tup[1], reverse=True)
+        sorted_usernames = [tuple[0] for tuple in sorted_overall_data]
+        sorted_points = [tuple[1] for tuple in sorted_overall_data]
+
 
     data = {
         'label_data': usernames,
         'barsch_data': barsch_data,
         'hecht_data': hecht_data,
         'zander_data': zander_data,
-        'overall_data': overall_data
+        'overall_data': overall_data,
+        'sorted_usernames': sorted_usernames,
+        'sorted_points': sorted_points
     }
 
-    return JsonResponse(data)
+    if json_format:
+        return JsonResponse(data)
+    else:
+        return data
