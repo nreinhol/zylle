@@ -19,7 +19,7 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, 'Hi {}, dein Account wurde erstellt! Du kannst dich jetzt anmelden'.format(username))
+            messages.success(request, '{} hat sich am Fishing Tournament angemeldet. Petri Heil!'.format(username))
             return redirect('login')
     else:
         form = UserRegisterForm()
