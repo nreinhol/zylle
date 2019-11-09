@@ -26,6 +26,7 @@ class PostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'blog/posts.html'
     context_object_name = 'posts'
+    paginate_by = 1
     ordering = ['-date_posted']
 
 
