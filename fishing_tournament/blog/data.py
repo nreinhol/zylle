@@ -46,6 +46,8 @@ def create_data(request, json_format=True):
     hecht_data = []
     zander_data = []
 
+    sum_of_each_division = []
+
     # fish_points
     barsch_point_data = []
     hecht_point_data = []
@@ -82,6 +84,9 @@ def create_data(request, json_format=True):
         user_zander_point = user_zander*zander_faktor
         zander_point_data.append(user_zander_point)
 
+        # calc sum of each divison
+        sum_of_each_division.append(user_barsch + user_hecht + user_zander)
+
         # calc overall score of user
         overall_data.append(user_barsch_point + user_hecht_point + user_zander_point)
 
@@ -98,7 +103,8 @@ def create_data(request, json_format=True):
         'zander_data': zander_data,
         'overall_data': overall_data,
         'sorted_usernames': sorted_usernames,
-        'sorted_points': sorted_points
+        'sorted_points': sorted_points,
+        'sum_of_each_division': sum_of_each_division
     }
 
     if json_format:

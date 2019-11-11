@@ -14,7 +14,7 @@ $.ajax({
             data: {
               labels: data_barcharts.label_data,
               datasets: [{
-                data: data_barcharts.overall_data,
+                data: data_barcharts.sum_of_each_division,
                 backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#fd7e14', '#f6c23e', '#e74a3b', '#36b9cc', '#6610f2', '#e83e8c', '#20c9a6', '#36b9cc;'],
                 hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#d16002', '#d1990a', '#b12316', '#237e8b', '#4309a2', '#ac145a', '#15826c', '#20717d'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",
