@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from blog import data as data_views
 from blog.views import (
+    rules,
     table,
     dashboard,
     PostListView, 
@@ -55,7 +56,8 @@ urlpatterns = [
     path('posts/new/', PostCreateView.as_view(), name='post-create'),
     path('data/', data_views.get_dummy_data),
     path('data_barcharts/', data_views.create_data),
-    path('table/', table, name='table')
+    path('table/', table, name='table'),
+    path('rules/', rules, name='rules')
 ]
 
 if settings.DEBUG:

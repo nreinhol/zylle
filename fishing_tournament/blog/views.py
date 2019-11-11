@@ -89,3 +89,8 @@ def table(request):
     }
 
     return render(request, 'blog/table.html', context)
+
+
+@login_required
+def rules(request):
+    return render(request, 'blog/rules.html')
