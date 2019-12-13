@@ -15,8 +15,8 @@ $.ajax({
               labels: data_barcharts.label_data,
               datasets: [{
                 data: data_barcharts.sum_of_each_division,
-                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#fd7e14', '#f6c23e', '#e74a3b', '#36b9cc', '#6610f2', '#e83e8c', '#20c9a6', '#36b9cc;'],
-                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#d16002', '#d1990a', '#b12316', '#237e8b', '#4309a2', '#ac145a', '#15826c', '#20717d'],
+                backgroundColor: ['#F29F05', '#9F5B33', '#623C73', '#386E58', '#D95204', '#735725', '#82718A', '#97BAAC', '#59331D', '#BF903D', '#A65F37', '#A1426C', '#FF711F'],
+                hoverBackgroundColor: ['#9c6603', '#4b2b18', '#3e2649', '#274c3d', '#923703', '#4d3a19', '#504655', '#649782', '#27160d', '#8e6b2d', '#764427', '#793151', '#b84300'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",
               }],
             },
@@ -42,7 +42,7 @@ $.ajax({
               legend: {
                 display: true
               },
-              cutoutPercentage: 10,
+              cutoutPercentage: 15,
             },
           });
     },

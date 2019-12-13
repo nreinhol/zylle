@@ -42,7 +42,7 @@ $.ajax({
           labels: data_barcharts.sorted_usernames,
           datasets: [{
             label: "Punkte",
-            backgroundColor: "#f6c23e",
+            backgroundColor: "#F29F05",
             hoverBackgroundColor: "#b58408",
             borderColor: "#4e73df",
             data: data_barcharts.sorted_points,

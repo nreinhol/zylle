@@ -42,7 +42,7 @@ $.ajax({
           labels: data_barcharts.label_data,
           datasets: [{
             label: "Barsch",
-            backgroundColor: "#4e73df",
+            backgroundColor: "#9F5B33",
             hoverBackgroundColor: "#2e59d9",
             borderColor: "#4e73df",
             data: data_barcharts.barsch_data,
