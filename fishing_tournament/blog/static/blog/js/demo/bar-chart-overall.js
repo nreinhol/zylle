@@ -79,7 +79,7 @@ $.ajax({
               ticks: {
                 min: 0,
                 max: 2000,
-                maxTicksLimit: 5,
+                maxTicksLimit: 30,
                 padding: 10,
               },
               gridLines: {

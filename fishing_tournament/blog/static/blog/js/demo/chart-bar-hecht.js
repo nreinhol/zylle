@@ -69,7 +69,7 @@ $.ajax({
                 drawBorder: false
               },
               ticks: {
-                maxTicksLimit: 6
+                maxTicksLimit: 30
               },
               maxBarThickness: 25,
             }],
@@ -77,7 +77,7 @@ $.ajax({
               ticks: {
                 min: 0,
                 max: 300,
-                maxTicksLimit: 5,
+                maxTicksLimit: 20,
                 padding: 10,
                 // Include a dollar sign in the ticks
                 callback: function(value, index, values) {
