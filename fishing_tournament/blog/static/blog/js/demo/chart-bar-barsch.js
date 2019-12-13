@@ -111,7 +111,7 @@ $.ajax({
             callbacks: {
               label: function(tooltipItem, chart) {
                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + 'cm';
+                return datasetLabel + ': ' + tooltipItem.yLabel + 'cm';
               }
             }
           },

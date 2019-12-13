@@ -36,7 +36,7 @@ def get_username_of_userid(user_id, request):
 
 def create_data(request, json_format=True):
     barsch_faktor = 2
-    zander_faktor = 1.5
+    zander_faktor = 1.3
     hecht_faktor = 1
 
     usernames = []
@@ -56,6 +56,10 @@ def create_data(request, json_format=True):
     # overall data lists
     overall_data = []
     sorted_overall_data = []
+
+    # sorted lists for overall score
+    sorted_usernames = []
+    sorted_points = []
 
 
     user_ids = get_all_userids_of_posts(request)

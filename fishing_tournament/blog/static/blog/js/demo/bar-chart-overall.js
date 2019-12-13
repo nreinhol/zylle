@@ -78,7 +78,7 @@ $.ajax({
             yAxes: [{
               ticks: {
                 min: 0,
-                max: 300,
+                max: 2000,
                 maxTicksLimit: 5,
                 padding: 10,
               },
@@ -110,7 +110,7 @@ $.ajax({
             callbacks: {
               label: function(tooltipItem, chart) {
                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                return datasetLabel + ': ' + number_format(tooltipItem.xLabel);
+                return datasetLabel + ': ' + tooltipItem.xLabel;
               }
             }
           },
