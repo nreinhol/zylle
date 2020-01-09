@@ -33,19 +33,19 @@ var bar_chart_overall = document.getElementById('bar-chart-overall');
 
 $.ajax({
   method: 'GET',
-  url: '/data_barcharts/',
-  success:function(data_barcharts){
-      console.log(data_barcharts);
+  url: '/data_json/',
+  success:function(data_json){
+      console.log(data_json);
       var myBarChart = new Chart(bar_chart_overall, {
         type: 'horizontalBar',
         data: {
-          labels: data_barcharts.sorted_usernames,
+          labels: data_json.sorted_usernames,
           datasets: [{
             label: "Punkte",
             backgroundColor: "#F29F05",
             hoverBackgroundColor: "#b58408",
             borderColor: "#4e73df",
-            data: data_barcharts.sorted_points,
+            data: data_json.sorted_overall_score,
           }
         ],
         },

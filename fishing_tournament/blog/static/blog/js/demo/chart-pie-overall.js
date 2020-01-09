@@ -6,15 +6,15 @@ var chart_pie_overall = document.getElementById("chart-pie-overall");
 
 $.ajax({
     method:'GET',
-    url: '/data_barcharts/',
-    success:function(data_barcharts){
-        console.log(data_barcharts);
+    url: '/data_json/',
+    success:function(data_json){
+        console.log(data_json);
         var myPieChart = new Chart(chart_pie_overall, {
             type: 'doughnut',
             data: {
-              labels: data_barcharts.label_data,
+              labels: data_json.usernames,
               datasets: [{
-                data: data_barcharts.sum_of_each_division,
+                data: data_json.overall_sum,
                 backgroundColor: ['#F29F05', '#9F5B33', '#623C73', '#386E58', '#D95204', '#735725', '#82718A', '#97BAAC', '#59331D', '#BF903D', '#A65F37', '#A1426C', '#FF711F'],
                 hoverBackgroundColor: ['#9c6603', '#4b2b18', '#3e2649', '#274c3d', '#923703', '#4d3a19', '#504655', '#649782', '#27160d', '#8e6b2d', '#764427', '#793151', '#b84300'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",

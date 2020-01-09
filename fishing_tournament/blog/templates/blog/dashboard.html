@@ -32,46 +32,91 @@
                 <div class="small" href="#">Summe aus den Werten der drei Divisionen.</div>
         </div>
     </div>
-    
-    <!-- Bar Chart Barsch -->
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Division - Barsch</h6>
+            <h6 class="m-0 font-weight-bold text-primary"> <i class="fas fa-table"></i> Division - Barsch</h6>
         </div>
         <div class="card-body">
-            <div class="chart-bar">
-            <canvas id="chart-bar-barsch"></canvas>
-            </div>
-            <hr>
-            <div class="small" href="#">Summe der drei längsten Barsche.</div>
+            <table class="table table-hover table-bordered table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col"><i class="fas fa-user"></i> Teilnehmer</th>
+                    <th scope="col">1st</th>
+                    <th scope="col">2nd</th>
+                    <th scope="col">3rd</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for container in UserDataContainer %}
+                        <tr>
+                            <td>{{ container.username }}</td>
+                            {% for entry in container.longest_barsch %}
+                                <td>{{ entry }} </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="small" href="#">Die drei längsten Fänge in der Division-Barsch</div>
         </div>
     </div>
 
-    <!-- Bar Chart Zander -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Division - Zander</h6>
+            <h6 class="m-0 font-weight-bold text-primary"> <i class="fas fa-table"></i> Division - Zander</h6>
         </div>
         <div class="card-body">
-            <div class="chart-bar">
-            <canvas id="chart-bar-zander"></canvas>
-            </div>
-            <hr>
-            <div class="small" href="#">Summe der drei längsten Zander.</div>
+            <table class="table table-hover table-bordered table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col"><i class="fas fa-user"></i> Teilnehmer</th>
+                    <th scope="col">1st</th>
+                    <th scope="col">2nd</th>
+                    <th scope="col">3rd</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for container in UserDataContainer %}
+                        <tr>
+                            <td>{{ container.username }}</td>
+                            {% for entry in container.longest_zander %}
+                                <td>{{ entry }} </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="small" href="#">Die drei längsten Fänge in der Division-Zander</div>
         </div>
     </div>
 
-    <!-- Bar Chart Hecht -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Division - Hecht</h6>
+            <h6 class="m-0 font-weight-bold text-primary"> <i class="fas fa-table"></i> Division - Hecht</h6>
         </div>
         <div class="card-body">
-            <div class="chart-bar">
-            <canvas id="chart-bar-hecht"></canvas>
-            </div>
-            <hr>
-            <div class="small" href="#">Summe der drei längsten Hechte.</div>
+            <table class="table table-hover table-bordered table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col"><i class="fas fa-user"></i> Teilnehmer</th>
+                    <th scope="col">1st</th>
+                    <th scope="col">2nd</th>
+                    <th scope="col">3rd</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for container in UserDataContainer %}
+                        <tr>
+                            <td>{{ container.username }}</td>
+                            {% for entry in container.longest_hecht %}
+                                <td>{{ entry }} </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="small" href="#">Die drei längsten Fänge in der Division-Hecht</div>
         </div>
     </div>
 
