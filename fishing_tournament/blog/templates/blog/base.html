@@ -44,18 +44,27 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="{% url 'dashboard' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <i class="fas fa-trophy"></i>
+          <span>Punkte-Übersicht</span></a>
       </li>
 
-      <!-- Nav Item - Tabelle -->
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'table' %}">
-            <i class="fas fa-table"></i>
-        <span>Tabelle</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-globe-europe"></i>
+            <span>Historie</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Tabellen:</h6>
+                <a class="collapse-item" href="{% url 'table' %}">Alle Fische</a>
+                <div class="collapse-divider"></div>
+                <h6 class="collapse-header">Vergangene Jahre:</h6>
+                <a class="collapse-item" href="">NPC 2020</a>
+            </div>
+        </div>
       </li>
-    
-
+ 
       <!-- Nav Item - Posts -->
       <li class="nav-item">
             <a class="nav-link" href="{% url 'posts' %}">
