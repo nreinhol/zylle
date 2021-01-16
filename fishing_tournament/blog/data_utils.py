@@ -18,7 +18,7 @@ def get_username_of_userid(request, user_id):
 
 
 def get_three_longest_fishes(request, user_id, fish_type):
-    return Post.objects.filter(author=user_id).filter(fish_type=fish_type).order_by('-fish_length')[0:3]
+    return Post.objects.filter(author=user_id).filter(fish_type=fish_type).filter(date_posted__year="2021").order_by('-fish_length')[0:3]
 
 
 def get_beautified_three_longest_fishes(request, user_id, fish_type):
