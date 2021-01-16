@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from .models import Post
 
 
-FISH_TYPES = ['Barsch', 'Hecht', 'Zander']
 FISH_DICT = {'Barsch': 2, 'Hecht': 1, 'Zander': 1.3}
+COMPETITION_YEAR = "2021"
 
 
 def get_all_userids_of_posts(request):
@@ -14,14 +14,17 @@ def get_all_userids_of_posts(request):
 
 
 def get_username_of_userid(request, user_id):
+    '''Returns the username of a given user id'''
     return User.objects.filter(id=user_id)[0].username
 
 
-def get_three_longest_fishes(request, user_id, fish_type):
-    return Post.objects.filter(author=user_id).filter(fish_type=fish_type).filter(date_posted__year="2021").order_by('-fish_length')[0:3]
+def get_three_longest_fishes(request, user_id, fish_type,):
+    '''Returns the post objects of the three longest fishes of the given user id and fish type'''
+    return Post.objects.filter(author=user_id).filter(fish_type=fish_type).filter(date_posted__year=COMPETITION_YEAR).order_by('-fish_length')[0:3]
 
 
 def get_beautified_three_longest_fishes(request, user_id, fish_type):
+    '''Returns a beautified list of the three longest fishes of the given user id and fish type'''
     three_longest_fishes = get_three_longest_fishes(request, user_id, fish_type)
     fish_lengths = [fish.fish_length for fish in three_longest_fishes]
     no_entry = ['-'] * 3
@@ -30,6 +33,10 @@ def get_beautified_three_longest_fishes(request, user_id, fish_type):
     return beautified_fish_lengths[0:3]
 
 
+def get_overall_sum(request, user_id):
+    '''Returns the sum of the sum of the three longest fishes for each fish type'''
+    return sum([get_sum_of_fish_type(request, user_id, key) for key in FISH_DICT])
+
 
 def get_sum_of_fish_type(request, user_id, fish_type):
     '''Returns the sum of the three longest fishes of a given fish type'''
@@ -37,11 +44,26 @@ def get_sum_of_fish_type(request, user_id, fish_type):
     return sum([fish.fish_length for fish in three_longest_fishes])
 
 
-def get_overall_sum(request, user_id):
-    '''Returns the sum of the sum of the three longest fishes for each fish type'''
-    return sum([get_sum_of_fish_type(request, user_id, key) for key in FISH_DICT])
-
-
 def get_overall_score(request, user_id):
     '''Returns the sum of the sum of the three longest fishes for each fish type multiplied by his factors'''
-    return sum([get_sum_of_fish_type(request, user_id, key) * FISH_DICT[key] for key in FISH_DICT])
+    overall_score = sum([get_sum_of_fish_type(request, user_id, key) * FISH_DICT[key] for key in FISH_DICT])
+    return float("{:.2f}".format(overall_score))
+
+
+def get_ranking_list(request):
+    '''Returns a dict with sorted usernames and the respective sorted scores'''
+    user_ids = get_all_userids_of_posts(request)
+    ranking = []
+    for user_id in user_ids:
+        username = get_username_of_userid(request, user_id)
+        score = get_overall_score(request, user_id)
+        ranking.append((username, score))
+
+    # zip usernames und scores to tuples (username,score) and sort these tuples descending to score 
+    sorted_ranking = sorted(ranking, key=lambda tup: tup[1], reverse=True)
+    # get a list of the sorted usernames out of the tuples
+    sorted_usernames = [rank[0] for rank in sorted_ranking]
+    # get a list of the sorted scores out of the tuples
+    sorted_scores = [rank[1] for rank in sorted_ranking]
+
+    return {"usernames": sorted_usernames, "scores": sorted_scores}

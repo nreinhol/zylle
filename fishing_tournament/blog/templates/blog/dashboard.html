@@ -4,32 +4,51 @@
 <div class="row">
     <div class="col-xl-12 col-lg-12">
     
-        <!-- Bar Chart Overall -->
+    <!-- HIGHCHART TEST -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-trophy"></i> Overall Score</h6>
         </div>
         <div class="card-body">
-            <div class="chart-bar">
-            <canvas id="bar-chart-overall"></canvas>
-            </div>
+     
+                <div id="container"></div>
+                <script src="https://code.highcharts.com/highcharts.src.js"></script>
+                <script>
+                  Highcharts.chart('container', {
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: null
+                    },
+                    xAxis: {
+                        categories: {{ Usernames |safe }},
+                        title: {
+                            text: 'Teilnehmer'
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Punkte'
+                        }
+                    },
+                    series: [{
+                        name: 'Punkte',
+                        data: {{ Scores |safe }},
+                        'color': '#006400'
+                    }],
+                    credits: {
+                        enabled: false
+                    },
+                    legend: {
+                        enabled:false
+                    }
+                  });
+                </script>
+            
             <hr>
             <div class="small" href="#">Gesamtpunktestand. Die Summe aus den Werten der drei Divisionen multipliziert mit ihren Faktoren.</div>
             
-        </div>
-    </div>
-    
-        <!-- Pie Chart Overall -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"> <i class="fas fa-chart-pie"></i> Summary of Divisions</h6>
-        </div>
-        <div class="card-body">
-                <div class="chart-pie pt-4 pb-2">
-                    <canvas id="chart-pie-overall"></canvas>
-                </div>
-                <hr>
-                <div class="small" href="#">Summe aus den Werten der drei Divisionen.</div>
         </div>
     </div>
 

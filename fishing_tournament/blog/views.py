@@ -76,8 +76,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 @login_required
 def dashboard(request):
+    RankingList = data.RankingList(request)
     context = {
-        'UserDataContainer': data.get_user_data_container(request)
+        'UserDataContainer': data.get_user_data_container(request),
+        'Usernames': RankingList.usernames,
+        'Scores': RankingList.scores
     }
     return render(request, 'blog/dashboard.html', context)
 
