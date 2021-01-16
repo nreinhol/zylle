@@ -19,7 +19,6 @@ from django.views.static import serve
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from blog import data_json
 from blog.views import (
     rules,
     table,
@@ -54,7 +53,6 @@ urlpatterns = [
     path('posts/<int:pk>/update', PostUpdateView.as_view(), name='post-update'),
     path('posts/<int:pk>/delete', PostDeleteView.as_view(), name='post-delete'),
     path('posts/new/', PostCreateView.as_view(), name='post-create'),
-    path('data_json/', data_json.create_chartjs_data),
     path('table/', table, name='table'),
     path('rules/', rules, name='rules')
 ]

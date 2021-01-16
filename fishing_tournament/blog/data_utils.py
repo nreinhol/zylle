@@ -33,11 +33,6 @@ def get_beautified_three_longest_fishes(request, user_id, fish_type):
     return beautified_fish_lengths[0:3]
 
 
-def get_overall_sum(request, user_id):
-    '''Returns the sum of the sum of the three longest fishes for each fish type'''
-    return sum([get_sum_of_fish_type(request, user_id, key) for key in FISH_DICT])
-
-
 def get_sum_of_fish_type(request, user_id, fish_type):
     '''Returns the sum of the three longest fishes of a given fish type'''
     three_longest_fishes = get_three_longest_fishes(request, user_id, fish_type)
