@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
+{% load thumbnail %}
     
 <div class="row">
 
@@ -10,7 +11,7 @@
                 
                 <div class="card shadow h-100 py-2">
                     <div class="card-body">
-                        <div class="row no-gutters align-items-center"> 
+                        <div class="row"> 
                             <div class="col mr-2">
                                 <div class="h5 mb-0 font-weight-bold text-primary mb-1"><a href="{% url 'profile-detail' user.id %}"><i class="fas fa-user"></i> {{ user.username }}</a></div>
                                 {% if user.first_name or user.last_name %}
@@ -22,7 +23,9 @@
                                 <div class="h7 mb-0 text-gray-600"><i class="fas fa-file-signature"></i> {{ user.date_joined|date:"d. M 'y"}}</div>
                             </div>
                             <div class="col-auto">
-                                    <a href="{% url 'profile-detail' user.id %}"><img class="rounded-circle" style="width: 8rem; height: 8rem;" src="{{ user.profile.image.url }}" alt=""></a>
+                                {% thumbnail user.profile.image "100x100" crop="center" as im %}
+                                <a href="{% url 'profile-detail' user.id %}"><img class="rounded-circle" style="width: 6rem; height: 6rem;" src="{{ im.url }}" alt=""></a>
+                                {% endthumbnail %}
                             </div>
                         </div>
                     </div>

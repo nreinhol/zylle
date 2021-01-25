@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
+{% load thumbnail %}
     
 <div class="row">
 
@@ -11,13 +12,17 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center"> 
                             <div class="col mr-2">
-                                <div class="h5 mb-0 font-weight-bold text-primary mb-1"><img class="img-profile rounded-circle" src="{{ post.author.profile.image.url }}" style="width: 2rem; height: 2rem;"> <a href="{% url 'profile-detail' post.author.id %}">{{ post.author }}</a></div>
+                                {% thumbnail post.author.profile.image "100x100" crop="center" as im %}
+                                <div class="h5 mb-0 font-weight-bold text-primary mb-1"><img class="img-profile rounded-circle" src="{{ im.url }}" style="width: 2rem; height: 2rem;"> <a href="{% url 'profile-detail' post.author.id %}">{{ post.author }}</a></div>
+                                {% endthumbnail %}
                                 <div class="h7 mb-0 text-gray-600"><i class="fas fa-calendar-alt"></i> {{ post.date_posted|date:"d. M 'y"}}</div>
                                 <div class="h7 mb-0 text-gray-600"><i class="fas fa-fish"></i> {{ post.fish_type}}</div>
                                 <div class="h7 mb-0 text-gray-600"><i class="fas fa-ruler"></i> {{ post.fish_length}} cm</div>
                             </div>
                             <div class="col-auto">
-                                <a href="{% url 'post-detail' post.id %}"><img class="rounded-circle" style="width: 8rem; height: 8rem;" src="{{ post.img.url }}" alt=""></a>
+                                {% thumbnail post.img "100x100" crop="center" as im %}
+                                <a href="{% url 'post-detail' post.id %}"><img class="rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
+                                {% endthumbnail %}
                             </div>
                         </div>
                     </div>

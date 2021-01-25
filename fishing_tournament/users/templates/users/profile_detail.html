@@ -1,6 +1,8 @@
 {% extends "blog/base.html" %}
 {% load static %}
 {% block content %}
+{% load thumbnail %}
+
 <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -26,15 +28,19 @@
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="{{ user_profile.profile.image.url }}" alt="">
-                        <hr>
-                        {% if user_profile.first_name or user_profile.last_name %}
-                        <div class="h7 mb-0 text-gray-600"><i class="fas fa-globe-americas"></i> {{ user_profile.first_name}} {{ user_profile.last_name}}</div>
-                        {% endif %}
-                        {% if user_profile.email %}
-                        <div class="h7 mb-0 text-gray-600"><i class="fas fa-envelope"></i> {{ user_profile.email}}</div>
-                        {% endif %}
-                        <div class="h7 mb-0 text-gray-600"><i class="fas fa-file-signature"></i> {{ user_profile.date_joined|date:"d. M 'y"}}</div>                    
+                    {% thumbnail user_profile.profile.image "200x200" crop="center" as im %}
+                    <img class="rounded-circle" style="width: 16rem; height: 16rem;" src="{{ im.url }}" alt=""></a>
+                    {% endthumbnail %}
+                    <hr>           
+                  </div>
+                  <div class="text-left">
+                    {% if user_profile.first_name or user_profile.last_name %}
+                    <div class="h7 mb-0 text-gray-600"><i class="fas fa-globe-americas"></i> {{ user_profile.first_name}} {{ user_profile.last_name}}</div>
+                    {% endif %}
+                    {% if user_profile.email %}
+                    <div class="h7 mb-0 text-gray-600"><i class="fas fa-envelope"></i> {{ user_profile.email}}</div>
+                    {% endif %}
+                    <div class="h7 mb-0 text-gray-600"><i class="fas fa-file-signature"></i> {{ user_profile.date_joined|date:"d. M 'y"}}</div>         
                   </div>
                 </div>
               </div>
