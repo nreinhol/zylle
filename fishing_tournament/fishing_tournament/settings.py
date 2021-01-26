@@ -28,7 +28,7 @@ SECRET_KEY = '*t%19sgywedr%7=3%p!%liy1)u$akgl-mjj9an0*=^h(-cn_7p'
 DEBUG = False
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['fishing.pythonanywhere.com']
+ALLOWED_HOSTS = ['kruskal.uber.space']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
