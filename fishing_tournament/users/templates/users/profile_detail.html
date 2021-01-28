@@ -27,12 +27,17 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="p-5">
+                  
+                  <!-- PROFILE IMG -->
                   <div class="text-center">
                     {% thumbnail user_profile.profile.image "200x200" crop="center" as im %}
                     <img class="rounded-circle" style="width: 16rem; height: 16rem;" src="{{ im.url }}" alt=""></a>
-                    {% endthumbnail %}
-                    <hr>           
+                    {% endthumbnail %}       
                   </div>
+
+                  <hr>
+                  
+                  <!-- INFORMATIONS -->
                   <div class="text-left">
                     {% if user_profile.first_name or user_profile.last_name %}
                     <div class="h7 mb-0 text-gray-600"><i class="fas fa-globe-americas"></i> {{ user_profile.first_name}} {{ user_profile.last_name}}</div>
@@ -42,7 +47,61 @@
                     {% endif %}
                     <div class="h7 mb-0 text-gray-600"><i class="fas fa-file-signature"></i> {{ user_profile.date_joined|date:"d. M 'y"}}</div>         
                   </div>
-                </div>
+                  
+                  <hr>
+                  
+                  <!-- PIE CHART -->
+                  <div id="container"></div>
+                <script src="https://code.highcharts.com/highcharts.src.js"></script>
+                <script>
+                Highcharts.chart('container', {
+                      chart: {
+                          plotBackgroundColor: null,
+                          plotBorderWidth: null,
+                          plotShadow: false,
+                          type: 'pie'
+                      },
+                      credits: {
+                        enabled: false
+                      },
+                      title: {
+                          text: 'Anteile der unterschiedlichen Fische'
+                      },
+                      tooltip: {
+                          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                      },
+                      accessibility: {
+                          point: {
+                              valueSuffix: '%'
+                          }
+                      },
+                      plotOptions: {
+                          pie: {
+                              allowPointSelect: true,
+                              cursor: 'pointer',
+                              dataLabels: {
+                                  enabled: false
+                              },
+                              showInLegend: true,
+                              colors:['#26211E', '#71734C', '#D99E30']
+                          }
+                      },
+                      series: [{
+                          name: '',
+                          colorByPoint: true,
+                          data: [{
+                              name: 'Barsch',
+                              y: {{ UserStatistics.amount_barsch |safe }}
+                          }, {
+                              name: 'Hecht',
+                              y: {{ UserStatistics.amount_hecht |safe }}
+                          }, {
+                              name: 'Zander',
+                              y: {{ UserStatistics.amount_zander |safe }}
+                          }]
+                      }]
+                  });
+                </script>
               </div>
             </div>
           </div>

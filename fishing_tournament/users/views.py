@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import UserRegisterForm
 from .models import Profile
+from blog import data
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -38,6 +39,11 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'users/profile_detail.html'
     context_object_name = 'user_profile'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["UserStatistics"] = data.UserStatistics(self.request, self.object.id)
+        return context
 
 
 class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
