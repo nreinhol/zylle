@@ -18,14 +18,14 @@ def get_username_of_userid(request, user_id):
     return User.objects.filter(id=user_id)[0].username
 
 
-def get_three_longest_fishes(request, user_id, fish_type,):
+def get_three_longest_fishes(request, user_id, fish_type, year):
     '''Returns the post objects of the three longest fishes of the given user id and fish type'''
-    return Post.objects.filter(author=user_id).filter(fish_type=fish_type).filter(date_posted__year=COMPETITION_YEAR).order_by('-fish_length')[0:3]
+    return Post.objects.filter(author=user_id).filter(fish_type=fish_type).filter(date_posted__year=year).order_by('-fish_length')[0:3]
 
 
-def get_beautified_three_longest_fishes(request, user_id, fish_type):
+def get_beautified_three_longest_fishes(request, user_id, fish_type, year=COMPETITION_YEAR):
     '''Returns a beautified list of the three longest fishes of the given user id and fish type'''
-    three_longest_fishes = get_three_longest_fishes(request, user_id, fish_type)
+    three_longest_fishes = get_three_longest_fishes(request, user_id, fish_type, year)
     fish_lengths = [fish.fish_length for fish in three_longest_fishes]
     no_entry = ['-'] * 3
     beautified_fish_lengths = fish_lengths + no_entry
@@ -33,25 +33,25 @@ def get_beautified_three_longest_fishes(request, user_id, fish_type):
     return beautified_fish_lengths[0:3]
 
 
-def get_sum_of_fish_type(request, user_id, fish_type):
+def get_sum_of_fish_type(request, user_id, fish_type, year):
     '''Returns the sum of the three longest fishes of a given fish type'''
-    three_longest_fishes = get_three_longest_fishes(request, user_id, fish_type)
+    three_longest_fishes = get_three_longest_fishes(request, user_id, fish_type, year)
     return sum([fish.fish_length for fish in three_longest_fishes])
 
 
-def get_overall_score(request, user_id):
+def get_overall_score(request, user_id, year):
     '''Returns the sum of the sum of the three longest fishes for each fish type multiplied by his factors'''
-    overall_score = sum([get_sum_of_fish_type(request, user_id, key) * FISH_DICT[key] for key in FISH_DICT])
+    overall_score = sum([get_sum_of_fish_type(request, user_id, key, year) * FISH_DICT[key] for key in FISH_DICT])
     return float("{:.2f}".format(overall_score))
 
 
-def get_ranking_list(request):
+def get_ranking_list(request, year=COMPETITION_YEAR):
     '''Returns a dict with sorted usernames and the respective sorted scores'''
     user_ids = get_all_userids_of_posts(request)
     ranking = []
     for user_id in user_ids:
         username = get_username_of_userid(request, user_id)
-        score = get_overall_score(request, user_id)
+        score = get_overall_score(request, user_id, year)
         ranking.append((username, score))
 
     # zip usernames und scores to tuples (username,score) and sort these tuples descending to score 
