@@ -25,3 +25,9 @@ class RankingList(object):
         self.usernames = json.dumps(self.ranking["usernames"])
         self.scores = json.dumps(self.ranking["scores"])
 
+
+class UserStatistics(object):
+    def __init__(self, request, user_id):
+        self.amount_barsch = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Barsch'))
+        self.amount_hecht = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Hecht'))
+        self.amount_zander = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Zander'))

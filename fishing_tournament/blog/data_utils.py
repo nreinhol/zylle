@@ -23,6 +23,11 @@ def get_three_longest_fishes(request, user_id, fish_type, year):
     return Post.objects.filter(author=user_id).filter(fish_type=fish_type).filter(date_posted__year=year).order_by('-fish_length')[0:3]
 
 
+def get_all_fishes_of_fish_type(request, user_id, fish_type):
+    '''Returns all post objects of the given user id and fish type'''
+    return Post.objects.filter(author=user_id).filter(fish_type=fish_type)
+
+
 def get_beautified_three_longest_fishes(request, user_id, fish_type, year=COMPETITION_YEAR):
     '''Returns a beautified list of the three longest fishes of the given user id and fish type'''
     three_longest_fishes = get_three_longest_fishes(request, user_id, fish_type, year)
