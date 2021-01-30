@@ -31,3 +31,5 @@ class UserStatistics(object):
         self.amount_barsch = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Barsch'))
         self.amount_hecht = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Hecht'))
         self.amount_zander = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Zander'))
+        self.total_amount_fishes = data_utils.get_amount_all_fishes_of_user(request, user_id)
+        self.longest_fish = data_utils.get_longest_fish_of_user(request, user_id)

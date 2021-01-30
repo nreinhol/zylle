@@ -23,6 +23,36 @@ def get_three_longest_fishes(request, user_id, fish_type, year):
     return Post.objects.filter(author=user_id).filter(fish_type=fish_type).filter(date_posted__year=year).order_by('-fish_length')[0:3]
 
 
+def get_amount_all_fishes_of_user(request, user_id):
+    '''Returns all post objects of user id sortet desc by fish lenght'''
+    all_post_objects = Post.objects.filter(author=user_id).order_by('-fish_length')
+    if all_post_objects:
+        return len(all_post_objects)
+    else:
+        return "0"
+
+
+def get_longest_fish_of_user(request, user_id):
+    '''Returns the post object of the longest fish of user id'''
+    all_post_objects = Post.objects.filter(author=user_id).order_by('-fish_length')
+    longest_fish_dict = {"date": None, "type": None, "length": None}
+    if all_post_objects:
+        longest_fish = all_post_objects[0]
+        longest_fish_dict["date"] = "{}.{}.{}".format(
+            longest_fish.date_posted.day,
+            longest_fish.date_posted.month,
+            str(longest_fish.date_posted.year)[2:4]
+        )
+        longest_fish_dict["type"] = longest_fish.fish_type
+        longest_fish_dict["length"] = "{}cm".format(longest_fish.fish_length)
+    else:
+        longest_fish_dict["date"] = "Der Tag wird kommen - Petri Heil!"
+        longest_fish_dict["type"] = " - "
+        longest_fish_dict["length"] = "0 cm"
+    
+    return longest_fish_dict
+
+
 def get_all_fishes_of_fish_type(request, user_id, fish_type):
     '''Returns all post objects of the given user id and fish type'''
     return Post.objects.filter(author=user_id).filter(fish_type=fish_type)

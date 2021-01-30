@@ -47,66 +47,126 @@
                     {% endif %}
                     <div class="h7 mb-0 text-gray-600"><i class="fas fa-file-signature"></i> {{ user_profile.date_joined|date:"d. M 'y"}}</div>         
                   </div>
-                  
-                  <hr>
-                  
-                  <!-- PIE CHART -->
-                  <div id="container"></div>
-                <script src="https://code.highcharts.com/highcharts.src.js"></script>
-                <script>
-                Highcharts.chart('container', {
-                      chart: {
-                          plotBackgroundColor: null,
-                          plotBorderWidth: null,
-                          plotShadow: false,
-                          type: 'pie'
-                      },
-                      credits: {
-                        enabled: false
-                      },
-                      title: {
-                          text: 'Anteile der unterschiedlichen Fische'
-                      },
-                      tooltip: {
-                          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                      },
-                      accessibility: {
-                          point: {
-                              valueSuffix: '%'
-                          }
-                      },
-                      plotOptions: {
-                          pie: {
-                              allowPointSelect: true,
-                              cursor: 'pointer',
-                              dataLabels: {
-                                  enabled: false
-                              },
-                              showInLegend: true,
-                              colors:['#26211E', '#71734C', '#D99E30']
-                          }
-                      },
-                      series: [{
-                          name: 'Anteil',
-                          colorByPoint: true,
-                          data: [{
-                              name: 'Barsch',
-                              y: {{ UserStatistics.amount_barsch |safe }}
-                          }, {
-                              name: 'Hecht',
-                              y: {{ UserStatistics.amount_hecht |safe }}
-                          }, {
-                              name: 'Zander',
-                              y: {{ UserStatistics.amount_zander |safe }}
-                          }]
-                      }]
-                  });
-                </script>
               </div>
             </div>
           </div>
+        </div>   
+</div>
+
+<!-- BEGIN OF ROW -->
+<div class="row">
+
+  <!-- CARD LONGEST FISH -->
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Längster Fisch ({{ UserStatistics.longest_fish.type }}) 
+                      </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        {{ UserStatistics.longest_fish.length }} 
+                    </div>
+                    <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                        {{ UserStatistics.longest_fish.date }}
+                    </div>
+                    
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-fish fa-2x text-gray-300"></i>
+                </div>
+            </div>
         </div>
-    
+    </div>
+  </div>
+
+  <!-- CARD CATCHES TOTAL -->
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Gefangene Fische (gesamt)</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      {% if UserStatistics.total_amount_fishes %}
+                        {{ UserStatistics.total_amount_fishes }}
+                      {% endif %}
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+<!-- END OF ROW -->
+
+<!-- CARD WITH PIE CHART -->
+<div class="card shadow mb-4">
+  <div class="card-body">
+
+    <div class="text-center">
+      <div class="h7 mb-0 text-gray-600"> Anteile der unterschiedlichen Fischarten von allen Fängen die {{ object.username }} in seiner gesamten Laufzeit gefangen hat. </div>
+    </div>
+
+    <!-- BEGIN OF PIE CHART -->
+    <div id="container"></div>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script>
+    Highcharts.chart('container', {
+          chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false,
+              type: 'pie'
+          },
+          credits: {
+            enabled: false
+          },
+          title: {
+              text: null
+          },
+          tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> %<br>Anzahl: {point.y}'
+          },
+          accessibility: {
+              point: {
+                  valueSuffix: '%'
+              }
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                      enabled: false
+                  },
+                  showInLegend: true,
+                  colors:['#26211E', '#71734C', '#D99E30']
+              }
+          },
+          series: [{
+              name: 'Anteil',
+              colorByPoint: true,
+              data: [{
+                  name: 'Barsch',
+                  y: {{ UserStatistics.amount_barsch |safe }}
+              }, {
+                  name: 'Hecht',
+                  y: {{ UserStatistics.amount_hecht |safe }}
+              }, {
+                  name: 'Zander',
+                  y: {{ UserStatistics.amount_zander |safe }}
+              }]
+          }]
+      });
+    </script>
+  </div>
 </div>
 
 {% endblock content %}
