@@ -169,4 +169,75 @@
   </div>
 </div>
 
+<!-- CARD WITH LINE CHART -->
+<div class="card shadow mb-4">
+  <div class="card-body">
+
+    <div class="text-center">
+      <div class="h7 mb-0 text-gray-600"> Monatl. Verteilung der Fänge von {{ object.username }} in seiner gesamten Laufzeit. </div>
+    </div>
+
+    <!-- BEGIN OF LINE CHART -->
+    <div id="container_a"></div>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script>
+    Highcharts.chart('container_a', {
+      chart: {
+        type: 'column'
+    },
+    credits: {
+            enabled: false
+    },
+    title: {
+        text: null
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Anzahl Fänge'
+        },
+        stackLabels: {
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: ( // theme
+                    Highcharts.defaultOptions.title.style &&
+                    Highcharts.defaultOptions.title.style.color
+                ) || 'gray'
+            }
+        }
+    },
+    tooltip: {
+        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+        shared: true
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: false
+            }
+        }
+    },
+    colors:['#26211E', '#71734C', '#D99E30'],
+    series: [{
+          name: "Barsch",
+          data: {{ UserStatistics.monthly_distribution.Barsch |safe }}
+      },
+      {
+          name: "Hecht",
+          data: {{ UserStatistics.monthly_distribution.Hecht |safe }}
+      },
+      {
+          name: "Zander",
+          data: {{ UserStatistics.monthly_distribution.Zander |safe }}
+      }]
+    });
+    </script>
+  </div>
+</div>
+
 {% endblock content %}

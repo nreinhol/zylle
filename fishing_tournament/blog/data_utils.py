@@ -5,6 +5,20 @@ from .models import Post
 
 FISH_DICT = {'Barsch': 2, 'Hecht': 1, 'Zander': 1.3}
 COMPETITION_YEAR = "2021"
+MONTH_MAPPING = {
+    1: "Jan",
+    2: "Feb",
+    3: "Mär",
+    4: "Apr",
+    5: "Mai",
+    6: "Jun",
+    7: "Jul",
+    8: "Aug",
+    9: "Sep",
+    10:"Okt",
+    11: "Nov",
+    12: "Dez"
+}
 
 
 def beautify_dates(date):
@@ -105,3 +119,29 @@ def get_ranking_list(request, year=COMPETITION_YEAR):
     sorted_scores = [rank[1] for rank in sorted_ranking]
 
     return {"usernames": sorted_usernames, "scores": sorted_scores}
+
+
+def get_monthly_distribution_of_all_fishes_of_user(request, user_id):
+    '''Returns a monthly distribution of all fish catches of a user'''
+    total_monthly_distribution = {}
+    for fish in FISH_DICT:
+        total_monthly_distribution[fish] = get_monthly_distribution_of_fish_type(request, user_id, fish)
+    
+    return total_monthly_distribution
+
+
+def get_monthly_distribution_of_fish_type(request, user_id, fish_type):
+    '''Returns the monthly distribution of a given fish type of a user'''
+    #initialize a dict with month as key and value 0
+    monthly_distribution = dict.fromkeys(list(MONTH_MAPPING.values()), 0)
+    for post in get_all_fishes_of_fish_type(request, user_id, fish_type):
+        month = MONTH_MAPPING[post.date_posted.month]
+        monthly_distribution[month] += 1
+    
+    return list(monthly_distribution.values())
+
+
+
+
+
+
