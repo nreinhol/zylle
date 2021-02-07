@@ -7,6 +7,14 @@ FISH_DICT = {'Barsch': 2, 'Hecht': 1, 'Zander': 1.3}
 COMPETITION_YEAR = "2021"
 
 
+def beautify_dates(date):
+    '''Adds beginning zero to single-digit days and months'''
+    if len(str(date)) == 1:
+        return "0{}".format(date)
+    else:
+        return date
+
+
 def get_all_userids_of_posts(request):
     '''Returns a list containing all distinct userids from postlist'''
     user_ids_tuple = list(Post.objects.values_list('author').distinct())
@@ -39,8 +47,8 @@ def get_longest_fish_of_user(request, user_id):
     if all_post_objects:
         longest_fish = all_post_objects[0]
         longest_fish_dict["date"] = "{}.{}.{}".format(
-            longest_fish.date_posted.day,
-            longest_fish.date_posted.month,
+            beautify_dates(longest_fish.date_posted.day),
+            beautify_dates(longest_fish.date_posted.month),
             str(longest_fish.date_posted.year)[2:4]
         )
         longest_fish_dict["type"] = longest_fish.fish_type
