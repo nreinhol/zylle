@@ -23,34 +23,44 @@
             </div>
 
           <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-12">
-                <div class="p-5">
+                
+                <div class="col-xl-6 col-md-6 mb-4">
+                    
+                    <!-- PROFILE IMG -->
+                    <div class="p-3">
+                        <div class="text-center">
+                            {% thumbnail user_profile.profile.image "200x200" crop="center" as im %}
+                            <img class="rounded" style="width: 16rem; height: 16rem;" src="{{ im.url }}" alt=""></a>
+                            {% endthumbnail %}       
+                        </div>
+                    </div>
+                
+                </div>
                   
-                  <!-- PROFILE IMG -->
-                  <div class="text-center">
-                    {% thumbnail user_profile.profile.image "200x200" crop="center" as im %}
-                    <img class="rounded-circle" style="width: 16rem; height: 16rem;" src="{{ im.url }}" alt=""></a>
-                    {% endthumbnail %}       
-                  </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    
+                    <!-- INFORMATIONS -->
+                    <div class="p-3">
+                        <div class="text-left">
+                            {% if user_profile.first_name or user_profile.last_name %}
+                            <div class="h7 mb-0 text-gray-600"><i class="fas fa-globe-americas"></i> {{ user_profile.first_name}} {{ user_profile.last_name}}</div>
+                            {% endif %}
+                            {% if user_profile.email %}
+                            <div class="h7 mb-0 text-gray-600"><strong>E-Mail: </strong>{{ user_profile.email}}</div>
+                            {% endif %}
+                            <div class="h7 mb-0 text-gray-600"><strong>Letzter Login: </strong>{{ user_profile.last_login|date:"d. M 'y"}}</div>
+                            <div class="h7 mb-0 text-gray-600"><strong>Angemeldet seit: </strong>{{ user_profile.date_joined|date:"d. M 'y"}}</div>
+                        </div>
+                    </div>
 
-                  <hr>
-                  
-                  <!-- INFORMATIONS -->
-                  <div class="text-left">
-                    {% if user_profile.first_name or user_profile.last_name %}
-                    <div class="h7 mb-0 text-gray-600"><i class="fas fa-globe-americas"></i> {{ user_profile.first_name}} {{ user_profile.last_name}}</div>
-                    {% endif %}
-                    {% if user_profile.email %}
-                    <div class="h7 mb-0 text-gray-600"><i class="fas fa-envelope"></i> {{ user_profile.email}}</div>
-                    {% endif %}
-                    <div class="h7 mb-0 text-gray-600"><i class="fas fa-file-signature"></i> {{ user_profile.date_joined|date:"d. M 'y"}}</div>         
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>   
+                </div>                
+              
+            
+        </div>
+
+    </div>
+
 </div>
 
 <!-- BEGIN OF ROW -->
