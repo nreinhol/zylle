@@ -18,9 +18,9 @@
                                 <div class="h7 mb-0 text-gray-600"><i class="fas fa-globe-americas"></i> {{ user.first_name}} {{ user.last_name}}</div>
                                 {% endif %}
                                 {% if user.email %}
-                                <div class="h7 mb-0 text-gray-600"><i class="fas fa-envelope"></i> {{ user.email}}</div>
+                                <div class="h7 mb-0 text-gray-600"><small><i class="fas fa-envelope"></i> {{ user.email}}</small></div>
                                 {% endif %}
-                                <div class="h7 mb-0 text-gray-600"><i class="fas fa-file-signature"></i> {{ user.date_joined|date:"d. M 'y"}}</div>
+                                <div class="h7 mb-0 text-gray-600"><small><i class="fas fa-file-signature"></i> {{ user.date_joined|date:"d. M 'y"}}</small></div>
                             </div>
                             <div class="col-auto">
                                 {% thumbnail user.profile.image "100x100" crop="center" as im %}
