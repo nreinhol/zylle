@@ -154,7 +154,11 @@
                   allowPointSelect: true,
                   cursor: 'pointer',
                   dataLabels: {
-                      enabled: false
+                      enabled: true,
+                      formatter: function() {
+                        return Math.round(this.percentage*100)/100 + ' %';
+                        },
+                      distance: -35,
                   },
                   showInLegend: true,
                   colors:['#26211E', '#71734C', '#D99E30']
