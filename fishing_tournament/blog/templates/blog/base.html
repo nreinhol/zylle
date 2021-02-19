@@ -1,4 +1,5 @@
 {% load static %}
+{% load thumbnail %}
 <!DOCTYPE html>
 <html lang="de">
 
@@ -32,9 +33,7 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'dashboard' %}">
-        <div class="sidebar-brand-icon">
-            <i class="fas fa-fish"></i>
-        </div>
+          <img src="../../../media/logos/npc_logo.png" width="20" alt="" class="d-inline-block align-middle mr-2">
         <div class="sidebar-brand-text mx-3">Niederrhein Predator Cup</sup></div>
       </a>
 
@@ -126,7 +125,9 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span>
-                <img class="img-profile rounded-circle" src="{{ user.profile.image.url }}">
+                {% thumbnail user.profile.image "100x100" crop="center" as im %}
+                <img class="img-profile rounded-circle" src="{{ im.url }}">
+                {% endthumbnail %}
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
