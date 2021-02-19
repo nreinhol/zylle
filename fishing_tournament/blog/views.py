@@ -86,6 +86,17 @@ def dashboard(request):
 
 
 @login_required
+def dashboard_2020(request):
+    RankingList = data.RankingList(request, 2020)
+    context = {
+        'UserDataContainer': data.get_user_data_container(request, 2020),
+        'Usernames': RankingList.usernames,
+        'Scores': RankingList.scores
+    }
+    return render(request, 'blog/dashboard.html', context)
+
+
+@login_required
 def table(request):
     context = {
         'posts': Post.objects.all()

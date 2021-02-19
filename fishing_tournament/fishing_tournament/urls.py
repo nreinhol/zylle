@@ -23,6 +23,7 @@ from blog.views import (
     rules,
     table,
     dashboard,
+    dashboard_2020,
     PostListView, 
     PostDetailView, 
     PostCreateView,
@@ -54,6 +55,7 @@ urlpatterns = [
     path('posts/<int:pk>/delete', PostDeleteView.as_view(), name='post-delete'),
     path('posts/new/', PostCreateView.as_view(), name='post-create'),
     path('table/', table, name='table'),
+    path('dashboard_2020/', dashboard_2020, name='npc_2020'),
     path('rules/', rules, name='rules')
 ]
 
