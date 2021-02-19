@@ -161,7 +161,7 @@
                       distance: -35,
                   },
                   showInLegend: true,
-                  colors:['#26211E', '#71734C', '#D99E30']
+                  colors:['#17252A', '#2B7A78', '#3AAFA9']
               }
           },
           series: [{
@@ -206,7 +206,8 @@
         text: null
     },
     xAxis: {
-        categories: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+        categories: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+        lineColor: 'transparent'
     },
     yAxis: {
         min: 0,
@@ -233,10 +234,11 @@
             stacking: 'normal',
             dataLabels: {
                 enabled: false
-            }
+            },
+            borderRadius: 3,
         }
     },
-    colors:['#26211E', '#71734C', '#D99E30'],
+    colors:['#17252A', '#2B7A78', '#3AAFA9'],
     series: [{
           name: "Barsch",
           data: {{ UserStatistics.monthly_distribution.Barsch |safe }}
