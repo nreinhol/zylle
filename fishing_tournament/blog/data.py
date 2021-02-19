@@ -5,23 +5,23 @@ from django.contrib.auth.models import User
 
 from . import data_utils
 
-def get_user_data_container(request):
+def get_user_data_container(request, year=data_utils.COMPETITION_YEAR):
     user_ids = data_utils.get_all_userids_of_posts(request)
 
-    return [UserDataContainer(request, user_id) for user_id in user_ids]
+    return [UserDataContainer(request, user_id, year) for user_id in user_ids]
     
 
 class UserDataContainer(object):
-    def __init__(self, request, user_id):
+    def __init__(self, request, user_id, year):
         self.username = data_utils.get_username_of_userid(request, user_id)
-        self.longest_barsch = data_utils.get_beautified_three_longest_fishes(request, user_id, 'Barsch')
-        self.longest_hecht = data_utils.get_beautified_three_longest_fishes(request, user_id, 'Hecht')
-        self.longest_zander = data_utils.get_beautified_three_longest_fishes(request, user_id, 'Zander')
+        self.longest_barsch = data_utils.get_beautified_three_longest_fishes(request, user_id, 'Barsch', year)
+        self.longest_hecht = data_utils.get_beautified_three_longest_fishes(request, user_id, 'Hecht', year)
+        self.longest_zander = data_utils.get_beautified_three_longest_fishes(request, user_id, 'Zander', year)
 
 
 class RankingList(object):
-    def __init__(self, request):
-        self.ranking = data_utils.get_ranking_list(request)
+    def __init__(self, request, year=data_utils.COMPETITION_YEAR):
+        self.ranking = data_utils.get_ranking_list(request, year)
         self.usernames = json.dumps(self.ranking["usernames"])
         self.scores = json.dumps(self.ranking["scores"])
 
