@@ -24,6 +24,8 @@ class RankingList(object):
         self.ranking = data_utils.get_ranking_list(request, year)
         self.usernames = json.dumps(self.ranking["usernames"])
         self.scores = json.dumps(self.ranking["scores"])
+        self.winner = self.ranking["usernames"][0]
+        self.winner_score = self.ranking["scores"][0]
 
 
 class UserStatistics(object):

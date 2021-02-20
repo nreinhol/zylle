@@ -40,6 +40,16 @@ def get_username_of_userid(request, user_id):
     return User.objects.filter(id=user_id)[0].username
 
 
+def get_all_posts_of_year(request, year):
+    '''Returns all post objects of a given year'''
+    return Post.objects.filter(date_posted__year=year)
+
+
+def get_len_of_all_posts_of_year(request, year):
+    '''Returns the len of all post objects of a given year'''
+    return len(get_all_posts_of_year(request, year))
+
+
 def get_three_longest_fishes(request, user_id, fish_type, year):
     '''Returns the post objects of the three longest fishes of the given user id and fish type'''
     return Post.objects.filter(author=user_id).filter(fish_type=fish_type).filter(date_posted__year=year).order_by('-fish_length')[0:3]

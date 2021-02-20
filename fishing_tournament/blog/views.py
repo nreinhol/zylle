@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from . import data
+from . import data_utils
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -80,7 +81,7 @@ def dashboard(request):
     context = {
         'UserDataContainer': data.get_user_data_container(request),
         'Usernames': RankingList.usernames,
-        'Scores': RankingList.scores
+        'Scores': RankingList.scores,
     }
     return render(request, 'blog/dashboard.html', context)
 
@@ -91,9 +92,12 @@ def dashboard_2020(request):
     context = {
         'UserDataContainer': data.get_user_data_container(request, 2020),
         'Usernames': RankingList.usernames,
-        'Scores': RankingList.scores
+        'Scores': RankingList.scores,
+        'Winner': RankingList.winner,
+        'WinnerScore': RankingList.winner_score,
+        'AllFishes': data_utils.get_len_of_all_posts_of_year(request, 2020)
     }
-    return render(request, 'blog/dashboard.html', context)
+    return render(request, 'blog/dashboard_2020.html', context)
 
 
 @login_required
