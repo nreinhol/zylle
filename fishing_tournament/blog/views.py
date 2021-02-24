@@ -112,3 +112,14 @@ def table(request):
 @login_required
 def rules(request):
     return render(request, 'blog/rules.html')
+
+
+@login_required
+def statistic(request):
+    RankingList = data.RankingList(request)
+    context = {
+        'LongestFishes': data.Statistics(request).longest_fishes,
+        'TotalAmountFishType': data.Statistics(request).total_amount_fish_type,
+        'MonthlyDistribution': data.Statistics(request).monthly_distribution
+    }
+    return render(request, 'blog/statistic.html', context)

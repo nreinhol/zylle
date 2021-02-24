@@ -30,9 +30,17 @@ class RankingList(object):
 
 class UserStatistics(object):
     def __init__(self, request, user_id):
-        self.amount_barsch = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Barsch'))
-        self.amount_hecht = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Hecht'))
-        self.amount_zander = len(data_utils.get_all_fishes_of_fish_type(request, user_id, 'Zander'))
+        self.amount_barsch = len(data_utils.get_all_fishes_of_fish_type_from_user(request, user_id, 'Barsch'))
+        self.amount_hecht = len(data_utils.get_all_fishes_of_fish_type_from_user(request, user_id, 'Hecht'))
+        self.amount_zander = len(data_utils.get_all_fishes_of_fish_type_from_user(request, user_id, 'Zander'))
         self.total_amount_fishes = data_utils.get_amount_all_fishes_of_user(request, user_id)
         self.longest_fish = data_utils.get_longest_fish_of_user(request, user_id)
         self.monthly_distribution = data_utils.get_monthly_distribution_of_all_fishes_of_user(request, user_id)
+
+
+class Statistics(object):
+    def __init__(self, request):
+        self.longest_fishes = data_utils.get_longest_fishes(request)
+        self.total_amount_fish_type = data_utils.get_total_amount_of_fish_type(request)
+        self.monthly_distribution = data_utils.get_monthly_distribution_of_all_fishes(request)
+    

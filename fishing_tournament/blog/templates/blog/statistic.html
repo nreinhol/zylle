@@ -1,0 +1,249 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="container">
+        
+        <h1 class="h3 mb-0 text-gray-800">Längste Fänge</h1>
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">  
+        </div>
+
+        <!-- BEGIN OF ROW -->
+        <div class="row">
+            
+            <!-- CARD LONGEST FISH -->
+            <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                Barsch:
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ LongestFishes.Barsch.user }} - {{ LongestFishes.Barsch.length }}
+                            </div>
+                            <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                                {{ LongestFishes.Barsch.date }}
+                            </div>
+                            
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-award fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        
+            <!-- CARD CATCHES TOTAL -->
+            <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                Hecht
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ LongestFishes.Hecht.user }} - {{ LongestFishes.Hecht.length }}
+                            </div>
+                            <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                                {{ LongestFishes.Hecht.date }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-award fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- CARD CATCHES TOTAL -->
+            <div class="col-xl-6 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                    Zander
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ LongestFishes.Zander.user }} - {{ LongestFishes.Zander.length }}
+                                </div>
+                                <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                                    {{ LongestFishes.Zander.date }}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-award fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+
+        </div>
+        <!-- END OF ROW -->
+
+        <h1 class="h3 mb-0 text-gray-800">Anteil Fischarten</h1>
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">  
+        </div>
+
+        <!-- CARD WITH PIE CHART -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+  
+      <div class="text-center">
+        <div class="h7 mb-0 text-gray-600"> Anteile der unterschiedlichen Fischarten aller Fänge die in der gesamten Laufzeit gefangen wurden. </div>
+      </div>
+  
+      <!-- BEGIN OF PIE CHART -->
+      <div id="container"></div>
+      <script src="https://code.highcharts.com/highcharts.src.js"></script>
+      <script>
+      Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            credits: {
+              enabled: false
+            },
+            title: {
+                text: null
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> %<br>Absolut: {point.y}'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function() {
+                          return Math.round(this.percentage*100)/100 + ' %';
+                          },
+                        distance: -35,
+                    },
+                    showInLegend: true,
+                    colors:['#17252A', '#2B7A78', '#3AAFA9']
+                }
+            },
+            series: [{
+                name: 'Anteil',
+                colorByPoint: true,
+                data: [{
+                    name: 'Barsch',
+                    y: {{ TotalAmountFishType.Barsch |safe }}
+                    }, {
+                    name: 'Hecht',
+                    y: {{ TotalAmountFishType.Hecht |safe }}
+                    }, {
+                    name: 'Zander',
+                    y: {{ TotalAmountFishType.Zander |safe }}
+                    }]
+                }]
+                });
+            </script>
+        </div>
+    </div>
+
+    <h1 class="h3 mb-0 text-gray-800">Monatliche Verteilung</h1>
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">  
+    </div>
+
+    <!-- CARD WITH LINE CHART -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+  
+            <div class="text-center">
+                <div class="h7 mb-0 text-gray-600"> Monatl. Verteilung der Fänge von {{ object.username }} in seiner gesamten Laufzeit. </div>
+            </div>
+  
+            <!-- BEGIN OF LINE CHART -->
+            <div id="container_a"></div>
+            <script src="https://code.highcharts.com/highcharts.src.js"></script>
+            <script>
+            Highcharts.chart('container_a', {
+                chart: {
+                type: 'column'
+            },
+            credits: {
+                    enabled: false
+            },
+            title: {
+                text: null
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                lineColor: 'transparent'
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Anzahl Fänge'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: ( // theme
+                            Highcharts.defaultOptions.title.style &&
+                            Highcharts.defaultOptions.title.style.color
+                        ) || 'gray'
+                    }
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    borderRadius: 3,
+                }
+            },
+            colors:['#17252A', '#2B7A78', '#3AAFA9'],
+            series: [{
+                    name: "Barsch",
+                    data: {{ MonthlyDistribution.Barsch |safe }}
+                },
+                {
+                    name: "Hecht",
+                    data: {{ MonthlyDistribution.Hecht |safe }}
+                },
+                {
+                    name: "Zander",
+                    data: {{ MonthlyDistribution.Zander |safe }}
+                }]
+            });
+            </script>
+    </div>
+  </div>
+
+    
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

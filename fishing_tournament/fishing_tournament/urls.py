@@ -28,7 +28,8 @@ from blog.views import (
     PostDetailView, 
     PostCreateView,
     PostUpdateView,
-    PostDeleteView
+    PostDeleteView,
+    statistic
 )
 
 from users.views import (
@@ -56,7 +57,8 @@ urlpatterns = [
     path('posts/new/', PostCreateView.as_view(), name='post-create'),
     path('table/', table, name='table'),
     path('dashboard_2020/', dashboard_2020, name='npc_2020'),
-    path('rules/', rules, name='rules')
+    path('rules/', rules, name='rules'),
+    path('statistic/', statistic, name='statistic')
 ]
 
 if settings.DEBUG:

@@ -40,6 +40,11 @@ def get_username_of_userid(request, user_id):
     return User.objects.filter(id=user_id)[0].username
 
 
+def get_all_posts(request):
+    '''Returns all post objects'''
+    return Post.objects
+
+
 def get_all_posts_of_year(request, year):
     '''Returns all post objects of a given year'''
     return Post.objects.filter(date_posted__year=year)
@@ -85,7 +90,12 @@ def get_longest_fish_of_user(request, user_id):
     return longest_fish_dict
 
 
-def get_all_fishes_of_fish_type(request, user_id, fish_type):
+def get_all_fishes_of_fish_type(request, fish_type):
+    '''Returns all post objects of the given fish type'''
+    return Post.objects.filter(fish_type=fish_type)
+
+
+def get_all_fishes_of_fish_type_from_user(request, user_id, fish_type):
     '''Returns all post objects of the given user id and fish type'''
     return Post.objects.filter(author=user_id).filter(fish_type=fish_type)
 
@@ -135,23 +145,78 @@ def get_monthly_distribution_of_all_fishes_of_user(request, user_id):
     '''Returns a monthly distribution of all fish catches of a user'''
     total_monthly_distribution = {}
     for fish in FISH_DICT:
-        total_monthly_distribution[fish] = get_monthly_distribution_of_fish_type(request, user_id, fish)
+        total_monthly_distribution[fish] = get_monthly_distribution_of_fish_type_from_user(request, user_id, fish)
     
     return total_monthly_distribution
 
 
-def get_monthly_distribution_of_fish_type(request, user_id, fish_type):
+def get_monthly_distribution_of_fish_type_from_user(request, user_id, fish_type):
     '''Returns the monthly distribution of a given fish type of a user'''
     #initialize a dict with month as key and value 0
     monthly_distribution = dict.fromkeys(list(MONTH_MAPPING.values()), 0)
-    for post in get_all_fishes_of_fish_type(request, user_id, fish_type):
+    for post in get_all_fishes_of_fish_type_from_user(request, user_id, fish_type):
+        month = MONTH_MAPPING[post.date_posted.month]
+        monthly_distribution[month] += 1
+    
+    return list(monthly_distribution.values())
+
+### OVERALL STATISTICS ###
+
+def get_longest_fishes(request):
+    '''Returns a dict with the longest fish of each fish type'''
+    all_posts = get_all_posts(request)
+    longest_fishes = {}
+
+    for fish in FISH_DICT:
+        longest_fish = all_posts.filter(fish_type=fish).order_by('-fish_length')[0]
+        longest_fish_dict = {"user": None, "date": None, "type": None, "length": None}
+
+        longest_fish_dict["user"] = longest_fish.author.username
+        longest_fish_dict["date"] = "{}.{}.{}".format(
+            beautify_dates(longest_fish.date_posted.day),
+            beautify_dates(longest_fish.date_posted.month),
+            str(longest_fish.date_posted.year)[2:4]
+        )
+        longest_fish_dict["type"] = longest_fish.fish_type
+        longest_fish_dict["length"] = "{}cm".format(longest_fish.fish_length)
+
+        longest_fishes[fish] = longest_fish_dict
+    
+    return longest_fishes
+
+
+def get_total_amount_of_fish_type(request):
+    '''Returns a dict with the total amount of each fish type'''
+    all_posts = get_all_posts(request)
+    total_amount = {}
+
+    for fish in FISH_DICT:
+        total_amount[fish] = len(all_posts.filter(fish_type=fish))
+    
+    return total_amount
+
+
+def get_monthly_distribution_of_all_fishes(request):
+    '''Returns a monthly distribution of all fish catches'''
+    total_monthly_distribution = {}
+    for fish in FISH_DICT:
+        total_monthly_distribution[fish] = get_monthly_distribution_of_fish_type(request, fish)
+    
+    return total_monthly_distribution
+
+
+def get_monthly_distribution_of_fish_type(request, fish_type):
+    '''Returns the monthly distribution of a given fish type'''
+    #initialize a dict with month as key and value 0
+    monthly_distribution = dict.fromkeys(list(MONTH_MAPPING.values()), 0)
+    for post in get_all_fishes_of_fish_type(request, fish_type):
         month = MONTH_MAPPING[post.date_posted.month]
         monthly_distribution[month] += 1
     
     return list(monthly_distribution.values())
 
 
-
+    
 
 
 
