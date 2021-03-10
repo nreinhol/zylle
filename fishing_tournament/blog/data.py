@@ -43,4 +43,5 @@ class Statistics(object):
         self.longest_fishes = data_utils.get_longest_fishes(request)
         self.total_amount_fish_type = data_utils.get_total_amount_of_fish_type(request)
         self.monthly_distribution = data_utils.get_monthly_distribution_of_all_fishes(request)
+        self.date_length = data_utils.get_date_length_of_all_fishes(request)
     

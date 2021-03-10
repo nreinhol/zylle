@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from datetime import timezone
+import json
 
 from .models import Post
 
@@ -43,6 +45,11 @@ def get_username_of_userid(request, user_id):
 def get_all_posts(request):
     '''Returns all post objects'''
     return Post.objects
+
+
+def get_all_posts_of_fish_type(request, fish_type):
+    '''Returns all post objects of given fish type'''
+    return Post.objects.filter(fish_type=fish_type)
 
 
 def get_all_posts_of_year(request, year):
@@ -214,6 +221,31 @@ def get_monthly_distribution_of_fish_type(request, fish_type):
         monthly_distribution[month] += 1
     
     return list(monthly_distribution.values())
+
+
+def get_date_length_of_all_fishes(request):
+    '''Returns a dict with fish type as key and date length list as values'''
+    date_length_dict = {}
+    
+    for fish in FISH_DICT:
+        date_length_list = []
+        all_posts = get_all_posts_of_fish_type(request, fish)
+        for post in all_posts:
+            post_list = []
+            # transform datetime to milliseconds
+            post_date = post.date_posted.replace(tzinfo=timezone.utc).timestamp() * 1000
+            post_list.append(post_date)
+            post_list.append(post.fish_length)
+            post_list.append(get_username_of_userid(request, post.author.id))
+            print(post_list)
+            date_length_list.append(post_list)
+        date_length_dict[fish] = date_length_list
+    
+    return date_length_dict
+        
+        
+        
+
 
 
     

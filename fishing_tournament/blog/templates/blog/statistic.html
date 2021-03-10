@@ -99,7 +99,7 @@
     <div class="card-body">
   
       <div class="text-center">
-        <div class="h7 mb-0 text-gray-600"> Anteile der unterschiedlichen Fischarten aller Fänge die in der gesamten Laufzeit gefangen wurden. </div>
+        <div class="h7 mb-0 text-gray-600"> {{ AllPosts }}Anteile der unterschiedlichen Fischarten aller Fänge die in der gesamten Laufzeit gefangen wurden. </div>
       </div>
   
       <!-- BEGIN OF PIE CHART -->
@@ -171,7 +171,7 @@
         <div class="card-body">
   
             <div class="text-center">
-                <div class="h7 mb-0 text-gray-600"> Monatl. Verteilung der Fänge von {{ object.username }} in seiner gesamten Laufzeit. </div>
+                <div class="h7 mb-0 text-gray-600"> Monatliche Verteilung aller bisherigen Fänge. </div>
             </div>
   
             <!-- BEGIN OF LINE CHART -->
@@ -239,7 +239,101 @@
     </div>
   </div>
 
-    
+  <h1 class="h3 mb-0 text-gray-800">Zeitlicher Verlauf</h1>
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">  
+    </div>
+  
+  <!-- CARD WITH LINE CHART -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+
+        <div class="text-center">
+            <div class="h7 mb-0 text-gray-600"> Alle bisherigen Fänge im zeitlichen Verlauf. </div>
+        </div>
+
+        <!-- BEGIN OF LINE CHART -->
+        <div id="container_c"></div>
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+        <script>
+        Highcharts.chart('container_c', {
+    chart: {
+        type: 'scatter',
+        zoomType: 'xy'
+    },
+    title: {
+                text: null
+    },
+    xAxis: {
+        title: {
+            enabled: true,
+            text: 'Datum'
+        },
+        type: 'datetime',
+        startOnTick: true,
+        endOnTick: true,
+        showLastLabel: true
+    },
+    yAxis: {
+        title: {
+            text: 'Länge (cm)'
+        }
+    },
+    plotOptions: {
+        scatter: {
+            marker: {
+                radius: 5,
+                states: {
+                    hover: {
+                        enabled: true,
+                        lineColor: 'rgb(100,100,100)'
+                    }
+                }
+            },
+            states: {
+                hover: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%d.%m.%Y}, {point.y} cm'
+            }
+        }
+    },
+    series: [{
+        name: 'Barsch',
+        color: '#17252A',
+        data: {{ DateLength.Barsch |safe }},
+        marker: {
+        symbol: 'circle',
+        radius: 4
+        }
+
+    }, {
+        name: 'Hecht',
+        color: '#2B7A78',
+        data: {{ DateLength.Hecht |safe }},
+        marker: {
+        symbol: 'diamond',
+        radius: 4
+        }
+    },{
+        name: 'Zander',
+        color: '#3AAFA9',
+        data: {{ DateLength.Zander |safe }},
+        marker: {
+        symbol: 'triangle',
+        radius: 4
+        }
+    }]
+});
+        </script>
+        </div>
+    </div>
+
     </div>
 </div>
 

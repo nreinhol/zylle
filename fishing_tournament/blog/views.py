@@ -120,6 +120,7 @@ def statistic(request):
     context = {
         'LongestFishes': data.Statistics(request).longest_fishes,
         'TotalAmountFishType': data.Statistics(request).total_amount_fish_type,
-        'MonthlyDistribution': data.Statistics(request).monthly_distribution
+        'MonthlyDistribution': data.Statistics(request).monthly_distribution,
+        'DateLength': data.Statistics(request).date_length
     }
     return render(request, 'blog/statistic.html', context)
