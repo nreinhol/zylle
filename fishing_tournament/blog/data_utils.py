@@ -6,7 +6,7 @@ from .models import Post
 
 
 FISH_DICT = {'Barsch': 2, 'Hecht': 1, 'Zander': 1.3}
-COMPETITION_YEAR = "2021"
+COMPETITION_YEAR = "2022"
 MONTH_MAPPING = {
     1: "Jan",
     2: "Feb",
