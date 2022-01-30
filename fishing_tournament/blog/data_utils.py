@@ -237,7 +237,6 @@ def get_date_length_of_all_fishes(request):
             post_list.append(post_date)
             post_list.append(post.fish_length)
             post_list.append(get_username_of_userid(request, post.author.id))
-            print(post_list)
             date_length_list.append(post_list)
         date_length_dict[fish] = date_length_list
     
