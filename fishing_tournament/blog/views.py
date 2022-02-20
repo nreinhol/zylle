@@ -77,42 +77,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 @login_required
 def dashboard(request):
-    RankingList = data.RankingList(request)
-    context = {
-        'UserDataContainer': data.get_user_data_container(request),
-        'Usernames': RankingList.usernames,
-        'Scores': RankingList.scores,
-    }
-    return render(request, 'blog/dashboard.html', context)
-
-
-@login_required
-def dashboard_2020(request):
-    year = 2020
-    RankingList = data.RankingList(request, year)
-    context = {
-        'UserDataContainer': data.get_user_data_container(request, year),
-        'Usernames': RankingList.usernames,
-        'Scores': RankingList.scores,
-        'Winner': RankingList.winner,
-        'WinnerScore': RankingList.winner_score,
-        'AllFishes': data_utils.get_len_of_all_posts_of_year(request, year)
-    }
-    return render(request, 'blog/dashboard_2020.html', context)
-
-@login_required
-def dashboard_2021(request):
-    year = 2021
-    RankingList = data.RankingList(request, year)
-    context = {
-        'UserDataContainer': data.get_user_data_container(request, year),
-        'Usernames': RankingList.usernames,
-        'Scores': RankingList.scores,
-        'Winner': RankingList.winner,
-        'WinnerScore': RankingList.winner_score,
-        'AllFishes': data_utils.get_len_of_all_posts_of_year(request, year)
-    }
-    return render(request, 'blog/dashboard_2021.html', context)
+    return render(request, 'blog/dashboard.html')
 
 
 @login_required
@@ -127,15 +92,3 @@ def table(request):
 @login_required
 def rules(request):
     return render(request, 'blog/rules.html')
-
-
-@login_required
-def statistic(request):
-    RankingList = data.RankingList(request)
-    context = {
-        'LongestFishes': data.Statistics(request).longest_fishes,
-        'TotalAmountFishType': data.Statistics(request).total_amount_fish_type,
-        'MonthlyDistribution': data.Statistics(request).monthly_distribution,
-        'DateLength': data.Statistics(request).date_length
-    }
-    return render(request, 'blog/statistic.html', context)
