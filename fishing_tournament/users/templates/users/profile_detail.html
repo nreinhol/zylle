@@ -47,9 +47,9 @@
                             <div class="h7 mb-0 text-gray-600"><i class="fas fa-user"></i> {{ user_profile.first_name}} {{ user_profile.last_name}}</div>
                             {% endif %}
                             {% if user_profile.email %}
-                            <div class="h7 mb-0 text-gray-600"><strong>E-Mail: </strong>{{ user_profile.email}}</div>
+                            <div class="h7 mb-0 text-gray-600"><i class="fas fa-envelope"></i> {{ user_profile.email}}</div>
                             {% endif %}
-                            <div class="h7 mb-0 text-gray-600"><strong>Letzter Login: </strong>{{ user_profile.last_login|date:"d. M 'y"}}</div>
+                            <div class="h7 mb-0 text-gray-600" style="margin-top:15px"><strong>Letzter Login: </strong>{{ user_profile.last_login|date:"d. M 'y"}}</div>
                             <div class="h7 mb-0 text-gray-600"><strong>Angemeldet seit: </strong>{{ user_profile.date_joined|date:"d. M 'y"}}</div>
                         </div>
                     </div>
