@@ -6,16 +6,16 @@
 <div class="row">
 
 {% for user in users %}
-    {% ifnotequal user.id  1 %}
+    {% if user.id != 1 %}
             <div class="col-xl-3 col-md-6 mb-4">
                 
                 <div class="card shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row"> 
                             <div class="col mr-2">
-                                <div class="h5 mb-0 font-weight-bold text-primary mb-1"><a href="{% url 'profile-detail' user.id %}"><i class="fas fa-user"></i> {{ user.username }}</a></div>
+                                <div class="h5 mb-0 font-weight-bold text-primary mb-1"><a href="{% url 'profile-detail' user.id %}"> {{ user.username }}</a></div>
                                 {% if user.first_name or user.last_name %}
-                                <div class="h7 mb-0 text-gray-600"><i class="fas fa-globe-americas"></i> {{ user.first_name}} {{ user.last_name}}</div>
+                                <div class="h7 mb-0 text-gray-600"><i class="fas fa-user"></i> {{ user.first_name}} {{ user.last_name}}</div>
                                 {% endif %}
                                 {% if user.email %}
                                 <div class="h7 mb-0 text-gray-600"><small><i class="fas fa-envelope"></i> {{ user.email}}</small></div>
@@ -32,7 +32,7 @@
                 </div>
             </div>
     
-    {% endifnotequal %}    
+    {% endif %}    
 {% endfor %}
 
 </div>
