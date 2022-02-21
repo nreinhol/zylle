@@ -8,7 +8,7 @@
         <div class="card o-hidden border-0 shadow-lg my-5">
 
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> {{ object.username }}</h6>
+                <h5 class="m-0 font-weight-bold text-primary"> {{ object.username }}</h6>
                 {% if user_profile.id == user.id %}
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +44,7 @@
                     <div class="p-3">
                         <div class="text-left">
                             {% if user_profile.first_name or user_profile.last_name %}
-                            <div class="h7 mb-0 text-gray-600"><i class="fas fa-globe-americas"></i> {{ user_profile.first_name}} {{ user_profile.last_name}}</div>
+                            <div class="h7 mb-0 text-gray-600"><i class="fas fa-user"></i> {{ user_profile.first_name}} {{ user_profile.last_name}}</div>
                             {% endif %}
                             {% if user_profile.email %}
                             <div class="h7 mb-0 text-gray-600"><strong>E-Mail: </strong>{{ user_profile.email}}</div>
@@ -61,199 +61,6 @@
 
     </div>
 
-</div>
-
-<!-- BEGIN OF ROW -->
-<div class="row">
-
-  <!-- CARD LONGEST FISH -->
-  <div class="col-xl-6 col-md-6 mb-4">
-    <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Längster Fisch ({{ UserStatistics.longest_fish.type }}) 
-                      </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        {{ UserStatistics.longest_fish.length }} 
-                    </div>
-                    <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
-                        {{ UserStatistics.longest_fish.date }}
-                    </div>
-                    
-                </div>
-                <div class="col-auto">
-                    <i class="fas fa-award fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-
-  <!-- CARD CATCHES TOTAL -->
-  <div class="col-xl-6 col-md-6 mb-4">
-    <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Gefangene Fische (gesamt)</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      {% if UserStatistics.total_amount_fishes %}
-                        {{ UserStatistics.total_amount_fishes }}
-                      {% endif %}
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <i class="fas fa-fish fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-
-</div>
-<!-- END OF ROW -->
-
-<!-- CARD WITH PIE CHART -->
-<div class="card shadow mb-4">
-  <div class="card-body">
-
-    <div class="text-center">
-      <div class="h7 mb-0 text-gray-600"> Anteile der unterschiedlichen Fischarten von allen Fängen die {{ object.username }} in seiner gesamten Laufzeit gefangen hat. </div>
-    </div>
-
-    <!-- BEGIN OF PIE CHART -->
-    <div id="container"></div>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
-    <script>
-    Highcharts.chart('container', {
-          chart: {
-              plotBackgroundColor: null,
-              plotBorderWidth: null,
-              plotShadow: false,
-              type: 'pie'
-          },
-          credits: {
-            enabled: false
-          },
-          title: {
-              text: null
-          },
-          tooltip: {
-              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b> %<br>Absolut: {point.y}'
-          },
-          accessibility: {
-              point: {
-                  valueSuffix: '%'
-              }
-          },
-          plotOptions: {
-              pie: {
-                  allowPointSelect: true,
-                  cursor: 'pointer',
-                  dataLabels: {
-                      enabled: true,
-                      formatter: function() {
-                        return Math.round(this.percentage*100)/100 + ' %';
-                        },
-                      distance: -35,
-                  },
-                  showInLegend: true,
-                  colors:['#17252A', '#2B7A78', '#3AAFA9']
-              }
-          },
-          series: [{
-              name: 'Anteil',
-              colorByPoint: true,
-              data: [{
-                  name: 'Barsch',
-                  y: {{ UserStatistics.amount_barsch |safe }}
-              }, {
-                  name: 'Hecht',
-                  y: {{ UserStatistics.amount_hecht |safe }}
-              }, {
-                  name: 'Zander',
-                  y: {{ UserStatistics.amount_zander |safe }}
-              }]
-          }]
-      });
-    </script>
-  </div>
-</div>
-
-<!-- CARD WITH LINE CHART -->
-<div class="card shadow mb-4">
-  <div class="card-body">
-
-    <div class="text-center">
-      <div class="h7 mb-0 text-gray-600"> Monatl. Verteilung der Fänge von {{ object.username }} in seiner gesamten Laufzeit. </div>
-    </div>
-
-    <!-- BEGIN OF LINE CHART -->
-    <div id="container_a"></div>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
-    <script>
-    Highcharts.chart('container_a', {
-      chart: {
-        type: 'column'
-    },
-    credits: {
-            enabled: false
-    },
-    title: {
-        text: null
-    },
-    xAxis: {
-        categories: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-        lineColor: 'transparent'
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Anzahl Fänge'
-        },
-        stackLabels: {
-            enabled: true,
-            style: {
-                fontWeight: 'bold',
-                color: ( // theme
-                    Highcharts.defaultOptions.title.style &&
-                    Highcharts.defaultOptions.title.style.color
-                ) || 'gray'
-            }
-        }
-    },
-    tooltip: {
-        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-        shared: true
-    },
-    plotOptions: {
-        column: {
-            stacking: 'normal',
-            dataLabels: {
-                enabled: false
-            },
-            borderRadius: 3,
-        }
-    },
-    colors:['#17252A', '#2B7A78', '#3AAFA9'],
-    series: [{
-          name: "Barsch",
-          data: {{ UserStatistics.monthly_distribution.Barsch |safe }}
-      },
-      {
-          name: "Hecht",
-          data: {{ UserStatistics.monthly_distribution.Hecht |safe }}
-      },
-      {
-          name: "Zander",
-          data: {{ UserStatistics.monthly_distribution.Zander |safe }}
-      }]
-    });
-    </script>
-  </div>
 </div>
 
 {% endblock content %}
