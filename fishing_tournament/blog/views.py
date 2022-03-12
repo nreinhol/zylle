@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from . import data
-from . import data_utils
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -77,7 +76,18 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 @login_required
 def dashboard(request):
-    return render(request, 'blog/dashboard.html')
+    context = {
+        'UserScoresKoenigsklasse': data.get_user_scores_koenigsklasse(request)
+    }
+    return render(request, 'blog/dashboard.html', context)
+
+
+@login_required
+def koenigsklasse(request):
+    context = {
+        'UserScoresKoenigsklasse': data.get_user_scores_koenigsklasse(request)
+    }
+    return render(request, 'blog/koenigsklasse.html', context)
 
 
 @login_required

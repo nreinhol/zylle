@@ -37,24 +37,32 @@
       </a>     
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link" href="{% url 'dashboard' %}">
           <i class="fas fa-trophy"></i>
           <span>Punkte-Übersicht</span></a>
       </li>
+      -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-globe-europe"></i>
-            <span>Historie</span>
+            <i class="fas fa-trophy"></i>
+            <span>Punkte-Übersicht</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Tabellen:</h6>
-                <a class="collapse-item" href="{% url 'table' %}">Alle Fische</a>
+                <a class="collapse-item" href="{% url 'koenigsklasse' %}">Königsklasse</a>
+                <h6 class="collapse-header">Sonderwertung:</h6>
             </div>
         </div>
+      </li>
+
+      <!-- Nav Item - Tabelle -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'table' %}">
+        <i class="fas fa-box"></i>
+        <span>Archiv</span></a>
       </li>
  
       <!-- Nav Item - Posts -->
@@ -166,18 +174,18 @@
           <div class="container">
             <div class="row mb-5">
             <div class="col-md-3">
-            <h5>&copy; NRWs bester Angler</h3>
+            <h5 style="margin-top:20px">&copy; NRWs bester Angler</h3>
             <span>Initiiert und durchgeführt von Angel-Zylle. </span>
             </div>
             <div class="col-md-3 ml-auto">
-            <h5>Kontakt</h3>
+            <h5 style="margin-top:20px">Kontakt</h3>
             <ul class="list-unstyled links">
             <li><a href="tel:++49 (0) 2821 7116893"><i class="fa fa-phone"></i> +49 (0) 2821 7116893</a></li>
             <li><a href="mailto:info@angel-zylle.de"><i class="fa fa-envelope"></i> info@angel-zylle.de</a></li>
             <li><a href="http://www.angel-zylle.de/"><i class="fa fa-globe"></i> www.angel-zylle.de</a>
             </ul>
             </div>
-            <div class="col-md-3 ml-auto">
+            <div class="col-md-3 ml-auto" style="margin-top:20px">
               <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9873.955218697598!2d6.1313606!3d51.7789519!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6a49e7771618e425!2sAngel%20Zylle%20UG%20(haftungsbeschr%C3%A4nkt)!5e0!3m2!1sde!2sde!4v1645367308550!5m2!1sde!2sde" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             </div>
