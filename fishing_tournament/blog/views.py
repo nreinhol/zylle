@@ -91,6 +91,14 @@ def koenigsklasse(request):
 
 
 @login_required
+def rotauge(request):
+    context = {
+        'UserScoresRotauge': data.get_user_scores_rotauge(request)
+    }
+    return render(request, 'blog/rotauge.html', context)
+
+
+@login_required
 def table(request):
     context = {
         'posts': Post.objects.all()

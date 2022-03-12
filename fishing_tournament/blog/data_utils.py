@@ -37,41 +37,76 @@ def set_positions(sorted_user_scores):
         UserScoresKoenigsklasse.position = f'{i}.'
 
 
-class UserData(object):
+class UserScores(object):
     def __init__(self, request, user_id, year):
         self.username = User.objects.filter(id=user_id)[0].username
         self.year = year
         self.posts = Post.objects.filter(date_posted__year=year, author_id=user_id)
-
-
-class UserScoresKoenigsklasse(UserData):
-    def __init__(self, request, user_id, year):
-        super().__init__(request, user_id, year)
-        self.fish_dict = self.get_fish_dict(request, self.posts)
-        self.score = self.calc_score(request)
         self.position = None
-
-        for fish_type, fish_length in self.fish_dict.items():
-            setattr(self, fish_type, fish_length)
-
+        self.score = 0
+    
     def __lt__(self, other):
         return self.score < other.score
 
-    def get_fish_dict(self, request, post_list):
-        fish_dict = dict()
+
+class UserScoresKoenigsklasse(UserScores):
+    def __init__(self, request, user_id, year):
+        super().__init__(request, user_id, year)
+        self.koenigsklasse_dict = self.get_koenigsklasse_dict()
+        self.score = self.calc_score()
+
+        for fish_type, fish_length in self.koenigsklasse_dict.items():
+            setattr(self, fish_type, fish_length)
+
+    def get_koenigsklasse_dict(self):
+        koenigsklasse_dict = dict()
         for fish_type, length_border in LENGTH_FILTER_KOENIGSKLASSE.items():
-            filtered_query_set = post_list.filter(fish_type=fish_type, fish_length__gte=length_border)
+            filtered_query_set = self.posts.filter(fish_type=fish_type, fish_length__gte=length_border)
             if filtered_query_set:
                 longest_fish = filtered_query_set.order_by("-fish_length")[0]
-                fish_dict[fish_type] = longest_fish.fish_length
+                koenigsklasse_dict[fish_type] = longest_fish.fish_length
             else:
-                fish_dict[fish_type] = "-"
+                koenigsklasse_dict[fish_type] = "-"
         
-        return fish_dict
+        return koenigsklasse_dict
     
-    def calc_score(self, request):
+    def calc_score(self):
         score = 0
         for fish_type, factor in FISH_FACTOR_KOENIGSKLASSE.items():
-            fish_lenght = self.fish_dict[fish_type]
+            fish_lenght = self.koenigsklasse_dict[fish_type]
             score +=  fish_lenght * factor if isinstance(fish_lenght, float) else 0
         return score
+
+
+class UserScoresRotauge(UserScores):
+    def __init__(self, request, user_id, year):
+        super().__init__(request, user_id, year)
+        self.rotaugen = self.get_rotaugen()
+        self.score = self.calc_score()
+
+        for i, fish_length in enumerate(self.rotaugen, 1):
+            setattr(self, f'Rotauge_{i}', fish_length)
+    
+    def get_rotaugen(self):
+        filtered_query_set = self.posts.filter(fish_type="Rotauge").order_by("-fish_length")
+        rotaugen = [routauge.fish_length for routauge in filtered_query_set]
+        return rotaugen + ["-"] * (5 - len(rotaugen))
+
+    def calc_score(self):
+        return sum([0 if fish_length=="-" else fish_length for fish_length in self.rotaugen])
+
+
+class UserScoresWels(UserScores):
+    def __init__(self, request, user_id, year):
+        super().__init__(request, user_id, year)
+    
+    def get_wels():
+        return
+
+
+class UserScoresBarbe(UserScores):
+    def __init__(self, request, user_id, year):
+        super().__init__(request, user_id, year)
+    
+    def get_barbe():
+        return
