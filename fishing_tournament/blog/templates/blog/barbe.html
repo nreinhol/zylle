@@ -9,7 +9,7 @@
         <img src="../../../media/logos/npc_saison.svg" width="150" alt="" class="center">
     </div>
 
-    <!-- BEGIN ROTAUGE CARD -->
+    <!-- BEGIN BARBE CARD -->
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -19,24 +19,14 @@
                         <th><i class="fas fa-trophy"></i></th>
                         <th>Teilnehmer</th>
                         <th>Punkte</th>
-                        <th>1st</th>
-                        <th>2nd</th>
-                        <th>3rd</th>
-                        <th>4th</th>
-                        <th>5th</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for userscore in UserScoresRotauge %}
+                        {% for userscore in UserScoresBarbe %}
                             <tr>
                                 <td>{{ userscore.position }}</td>
                                 <td>{{ userscore.username }}</td>
                                 <td>{{ userscore.score }}</td>
-                                <td>{{ userscore.Rotauge_1 }}</td>
-                                <td>{{ userscore.Rotauge_2 }}</td>
-                                <td>{{ userscore.Rotauge_3 }}</td>
-                                <td>{{ userscore.Rotauge_4 }}</td>
-                                <td>{{ userscore.Rotauge_5 }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -45,7 +35,7 @@
             <div class="small" style="margin-top:15px; font-size:12px">* alle Längenangaben in cm</div>
         </div>
     </div>
-    <!-- END ROTAUGE CARD -->
+    <!-- END BARBE CARD -->
 
     </div>
 </div>

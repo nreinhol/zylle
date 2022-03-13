@@ -99,6 +99,22 @@ def rotauge(request):
 
 
 @login_required
+def wels(request):
+    context = {
+        'UserScoresWels': data.get_user_scores_wels(request)
+    }
+    return render(request, 'blog/wels.html', context)
+
+
+@login_required
+def barbe(request):
+    context = {
+        'UserScoresBarbe': data.get_user_scores_barbe(request)
+    }
+    return render(request, 'blog/barbe.html', context)
+
+
+@login_required
 def table(request):
     context = {
         'posts': Post.objects.all()

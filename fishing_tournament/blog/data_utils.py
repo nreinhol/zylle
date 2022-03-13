@@ -99,14 +99,18 @@ class UserScoresRotauge(UserScores):
 class UserScoresWels(UserScores):
     def __init__(self, request, user_id, year):
         super().__init__(request, user_id, year)
+        self.score = self.get_wels()
     
-    def get_wels():
-        return
+    def get_wels(self):
+        wels_list = self.posts.filter(fish_type="Wels").order_by("-fish_length")
+        return wels_list[0].fish_length if wels_list else 0
 
 
 class UserScoresBarbe(UserScores):
     def __init__(self, request, user_id, year):
         super().__init__(request, user_id, year)
+        self.score = self.get_barbe()
     
-    def get_barbe():
-        return
+    def get_barbe(self):
+        barbe_list = self.posts.filter(fish_type="Barbe").order_by("-fish_length")
+        return barbe_list[0].fish_length if barbe_list else 0

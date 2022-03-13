@@ -47,15 +47,10 @@
                 <a class="collapse-item" href="{% url 'koenigsklasse' %}">Königsklasse</a>
                 <h6 class="collapse-header">Sonderwertung:</h6>
                 <a class="collapse-item" href="{% url 'rotauge' %}">Rotaugen</a>
+                <a class="collapse-item" href="{% url 'wels' %}">Wels</a>
+                <a class="collapse-item" href="{% url 'barbe' %}">Barbe</a>
             </div>
         </div>
-      </li>
-
-      <!-- Nav Item - Tabelle -->
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'table' %}">
-        <i class="fas fa-box"></i>
-        <span>Archiv</span></a>
       </li>
  
       <!-- Nav Item - Posts -->
@@ -71,11 +66,18 @@
           <i class="fas fa-users"></i>
           <span>Teilnehmer</span></a>
       </li>
+
+      <!-- Nav Item - Tabelle -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'table' %}">
+        <i class="fas fa-box"></i>
+        <span>Archiv</span></a>
+      </li>
       
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
     
-      <!-- Nav Item - Teilnehmer -->
+      <!-- Nav Item - Regelwerk -->
       <li class="nav-item">
         <a class="nav-link" href="{% url 'rules' %}">
         <i class="far fa-handshake"></i>
