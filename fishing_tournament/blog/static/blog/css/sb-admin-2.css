@@ -13,9 +13,10 @@
 
  /*!
  * .bg-gradient-primary ist fuer den farbverlauf verantwortlich
- *
- *
- *
+ *  yellow: #FFE100
+ *  orange: #FF4600
+ *  black: #0D0D0D
+ *  light_black: #262626
  */
 
 :root {
@@ -24,9 +25,11 @@
   --light_gray: #DEF2F1;
   --white: #FEFFFF;
 
-  --primary: #17252A;
-  --primary_gradient: #0f1416;
-  --primary_hover: #20373f;
+  --orange: #FF4600;
+
+  --primary: #0D0D0D;
+  --primary_gradient: #0D0D0D;
+  --primary_hover: #373737;
   --wrapper_background: #f8f9fc;
   --box_shadow: #cfd7da;
   --secondary: #17252A;
@@ -1633,8 +1636,8 @@ pre code {
 
 .table .thead-dark th {
   color: #fff;
-  background-color: #5a5c69;
-  border-color: #6c6e7e;
+  background-color: #FF4600;
+  border-color: #FF4600;
 }
 
 .table .thead-light th {
@@ -10606,7 +10609,7 @@ a:focus {
 }
 
 .bg-newpost-image {
-  background: url("https://source.unsplash.com/VEobb3p5yOI/600x800");
+  background: url("https://source.unsplash.com/yzzJbqQ1O-Y/600x800");
   background-position: center;
   background-size: cover;
 }
@@ -10618,7 +10621,7 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/IgQ_v9Hwoyc/600x800");
+  background: url("https://source.unsplash.com/nY_R3NZKM38/600x800");
   background-position: center;
   background-size: cover;
 }
@@ -10630,7 +10633,7 @@ a:focus {
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/x5DCtxNSoVI/600x800");
+  background: url("https://source.unsplash.com/HJhGcU_IbsQ/600x800");
   background-position: center;
   background-size: cover;
 }

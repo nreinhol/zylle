@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Fishing Tournament</title>
+  <title>NRWs bester Angler</title>
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'blog/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -33,7 +33,7 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'dashboard' %}">
-          <img src="../../../media/logos/npc_white.svg" width="50" alt="" class="d-inline-block align-middle">
+          <img src="../../../media/logos/logo.svg" width="60" alt="" class="d-inline-block align-middle">
       </a>     
 
       <li class="nav-item">
@@ -103,7 +103,7 @@
         
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars" style="color:#FF4600"></i>
             </button>
 
             <!-- Topbar Navbar -->
@@ -111,7 +111,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'post-create' %}">
-                  <i class="fas fa-fw fa-plus"></i>
+                  <i class="fas fa-fw fa-plus" style="color:#FF4600"></i>
                 </a>
             </li>
 
@@ -120,7 +120,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span>
+                <span class="mr-2 d-none d-lg-inline small" style="color:#FF4600">{{ user.username }}</span>
                 {% thumbnail user.profile.image "100x100" crop="center" as im %}
                 <img class="img-profile rounded-circle" src="{{ im.url }}">
                 {% endthumbnail %}
@@ -169,11 +169,11 @@
           <div class="container">
             <div class="row mb-5">
             <div class="col-md-3">
-            <h5 style="margin-top:20px">&copy; NRWs bester Angler</h3>
+            <h5 style="margin-top:20px; color:#FF4600">&copy; NRWs bester Angler</h3>
             <span>Initiiert und durchgeführt von Angel-Zylle. </span>
             </div>
             <div class="col-md-3 ml-auto">
-            <h5 style="margin-top:20px">Kontakt</h3>
+            <h5 style="margin-top:20px; color:#FF4600">Kontakt</h3>
             <ul class="list-unstyled links">
             <li><a href="tel:++49 (0) 2821 7116893"><i class="fa fa-phone"></i> +49 (0) 2821 7116893</a></li>
             <li><a href="mailto:info@angel-zylle.de"><i class="fa fa-envelope"></i> info@angel-zylle.de</a></li>
