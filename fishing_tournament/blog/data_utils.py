@@ -40,6 +40,7 @@ def set_positions(sorted_user_scores):
 class UserScores(object):
     def __init__(self, request, user_id, year):
         self.user_id = user_id
+        self.img = User.objects.filter(id=self.user_id)[0].profile.image
         self.username = User.objects.filter(id=self.user_id)[0].username
         self.year = year
         self.posts = Post.objects.filter(date_posted__year=year, author_id=self.user_id)
