@@ -13,15 +13,6 @@ from django.views.generic import (
 from .models import Post
 
 
-@login_required
-def home(request):
-    context = {
-        'posts': Post.objects.all()
-    }
-
-    return render(request, 'blog/home.html', context)
-
-
 class PostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'blog/posts.html'
@@ -77,7 +68,12 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 @login_required
 def dashboard(request):
     context = {
-        'UserScoresKoenigsklasse': data.get_user_scores_koenigsklasse(request)
+        'ScoresList': [
+            data.get_user_scores_koenigsklasse(request)[:3],
+            data.get_user_scores_rotauge(request)[:3],
+            data.get_user_scores_wels(request)[:3],
+            data.get_user_scores_barbe(request)[:3]
+        ]
     }
     return render(request, 'blog/dashboard.html', context)
 
