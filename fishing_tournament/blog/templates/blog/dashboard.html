@@ -50,7 +50,7 @@
                             </div>
                             
                             <div class="col mr-2">
-                                {% thumbnail user.profile.image "100x100" crop="center" as im %}
+                                {% thumbnail userscore.img "100x100" crop="center" as im %}
                                 <img class="img-profile rounded-circle" src="{{ im.url }}" style="width: 3rem; height: 3rem;">
                                 {% endthumbnail %}
                                 <div class="font-weight-bold text-primary"><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></div>

@@ -30,7 +30,7 @@
                         {% for userscore in UserScoresRotauge %}
                             <tr>
                                 <td>{{ userscore.position }}</td>
-                                <td>{{ userscore.username }}</td>
+                                <td><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></td>
                                 <td>{{ userscore.score }}</td>
                                 <td>{{ userscore.Rotauge_1 }}</td>
                                 <td>{{ userscore.Rotauge_2 }}</td>

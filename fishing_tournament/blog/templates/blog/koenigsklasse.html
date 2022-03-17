@@ -30,7 +30,7 @@
                         {% for userscore in UserScoresKoenigsklasse %}
                             <tr>
                                 <td>{{ userscore.position }}</td>
-                                <td>{{ userscore.username }}</td>
+                                <td><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></td>
                                 <td>{{ userscore.score }}</td>
                                 <td>{{ userscore.Barsch }}</td>
                                 <td>{{ userscore.Hecht }}</td>
