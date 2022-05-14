@@ -39,7 +39,6 @@
   --purple: #6f42c1;
   --pink: #e83e8c;
   --red: #e74a3b;
-  --orange: #fd7e14;
   --yellow: #f6c23e;
   --green: #1cc88a;
   --teal: #20c9a6;
@@ -1405,7 +1404,7 @@ pre code {
 }
 
 .table tbody + tbody {
-  border-top: 2px solid #e3e6f0;
+  border-top: 2px solid #FF4600;
 }
 
 .table-sm th,
@@ -1419,7 +1418,7 @@ pre code {
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #e3e6f0;
+  border: 1px solid #cdcdcd;
 }
 
 .table-bordered thead th,
@@ -1453,7 +1452,7 @@ pre code {
 .table-primary td,
 .table-primary thead th,
 .table-primary tbody + tbody {
-  border-color: #a3b6ee;
+  border-color: #FF4600;
 }
 
 .table-hover .table-primary:hover {
@@ -1643,7 +1642,7 @@ pre code {
 .table .thead-light th {
   color: #6e707e;
   background-color: #eaecf4;
-  border-color: #e3e6f0;
+  border-color: #FF4600;
 }
 
 .table-dark {
@@ -6226,6 +6225,10 @@ a.close.disabled {
 
 .bg-primary {
   background-color: var(--primary) !important;
+}
+
+.bg-orange {
+  background-color: var(--orange) !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
