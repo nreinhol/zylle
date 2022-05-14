@@ -77,7 +77,7 @@ class UserScoresKoenigsklasse(UserScores):
         for fish_type, factor in FISH_FACTOR_KOENIGSKLASSE.items():
             fish_lenght = self.koenigsklasse_dict[fish_type]
             score +=  fish_lenght * factor if isinstance(fish_lenght, float) else 0
-        return score
+        return float(f'{score:.2f}')
 
 
 class UserScoresRotauge(UserScores):
@@ -95,7 +95,8 @@ class UserScoresRotauge(UserScores):
         return rotaugen + ["-"] * (5 - len(rotaugen))
 
     def calc_score(self):
-        return sum([0 if fish_length=="-" else fish_length for fish_length in self.rotaugen])
+        score = sum([0 if fish_length=="-" else fish_length for fish_length in self.rotaugen])
+        return float(f'{score:.2f}') 
 
 
 class UserScoresWels(UserScores):
@@ -105,7 +106,8 @@ class UserScoresWels(UserScores):
     
     def get_wels(self):
         wels_list = self.posts.filter(fish_type="Wels").order_by("-fish_length")
-        return wels_list[0].fish_length if wels_list else 0
+        longest = wels_list[0].fish_length if wels_list else 0
+        return float(f'{longest:.2f}')
 
 
 class UserScoresBarbe(UserScores):
@@ -115,4 +117,5 @@ class UserScoresBarbe(UserScores):
     
     def get_barbe(self):
         barbe_list = self.posts.filter(fish_type="Barbe").order_by("-fish_length")
-        return barbe_list[0].fish_length if barbe_list else 0
+        longest = barbe_list[0].fish_length if barbe_list else 0
+        return float(f'{longest:.2f}')
