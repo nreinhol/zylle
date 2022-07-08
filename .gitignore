@@ -86,3 +86,4 @@ local_settings.py
 .env
 db.sqlite3
 fishing_tournament/media/
+fishing_tournament/fishing_tournament/settings.py
