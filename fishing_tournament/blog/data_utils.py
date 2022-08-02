@@ -92,6 +92,8 @@ class UserScoresRotauge(UserScores):
     def get_rotaugen(self):
         filtered_query_set = self.posts.filter(fish_type="Rotauge").order_by("-fish_length")
         rotaugen = [routauge.fish_length for routauge in filtered_query_set]
+        if(len(rotaugen) > 5):
+            rotaugen = rotaugen[:5]
         return rotaugen + ["-"] * (5 - len(rotaugen))
 
     def calc_score(self):
