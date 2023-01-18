@@ -6,10 +6,10 @@
 
     <!-- HEADER SVG -->
     <div class=text-center style="margin-bottom:20px">
-        <img src="../../../media/logos/logo_wels.svg" width="200" alt="" class="center">
+        <img src="../../../media/logos/logo_karpfen.svg" width="200" alt="" class="center">
     </div>
 
-    <!-- BEGIN WELS CARD -->
+    <!-- BEGIN KARPFEN CARD -->
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered table-sm">
@@ -21,7 +21,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for userscore in UserScoresWels %}
+                        {% for userscore in UserScoresKarpfen %}
                             <tr>
                                 <td>{{ userscore.position }}</td>
                                 <td><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></td>
@@ -31,9 +31,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="small" style="margin-top:15px; margin-bottom: 40px; font-size:11px">1) alle Längenangaben in cm</div>
+            <div class="small" style="margin-top:15px; font-size:11px">1) Karpfen: 1x </div>
+            <div class="small" style="margin-bottom: 40px; font-size:11px">2) Karpfen ab 50cm </div>
         </div>
-    <!-- END WELS CARD -->
+    <!-- END BARBE CARD -->
 
     </div>
 </div>

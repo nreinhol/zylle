@@ -70,9 +70,8 @@ def dashboard(request):
     context = {
         'ScoresList': [
             data.get_user_scores_koenigsklasse(request)[:3],
-            data.get_user_scores_rotauge(request)[:3],
-            data.get_user_scores_wels(request)[:3],
-            data.get_user_scores_barbe(request)[:3]
+            data.get_user_scores_schleie(request)[:3],
+            data.get_user_scores_karpfen(request)[:3]
         ]
     }
     return render(request, 'blog/dashboard.html', context)
@@ -95,19 +94,19 @@ def rotauge(request):
 
 
 @login_required
-def wels(request):
+def schleie(request):
     context = {
-        'UserScoresWels': data.get_user_scores_wels(request)
+        'UserScoresSchleie': data.get_user_scores_schleie(request)
     }
-    return render(request, 'blog/wels.html', context)
+    return render(request, 'blog/schleie.html', context)
 
 
 @login_required
-def barbe(request):
+def karpfen(request):
     context = {
-        'UserScoresBarbe': data.get_user_scores_barbe(request)
+        'UserScoresKarpfen': data.get_user_scores_karpfen(request)
     }
-    return render(request, 'blog/barbe.html', context)
+    return render(request, 'blog/karpfen.html', context)
 
 
 @login_required

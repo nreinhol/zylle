@@ -13,7 +13,8 @@
                     <div class="card-body">
                         <div class="row"> 
                             <div class="col mr-2">
-                                <div class="h5 mb-0 font-weight-bold text-primary mb-1"><a href="{% url 'profile-detail' user.id %}"> {{ user.username }}</a></div>
+                                <div class="h5 mb-0 font-weight-bold text-primary mb-1"><a href="{% url 'profile-detail' user.id %}"> {{ user.username }}</a> 
+                                    {% if not user.is_active %}<i class="far fa-times-circle" style="color:#FF4600" data-toggle="tooltip" data-placement="top" title="{{ user.username }} ist inaktiv"></i>{% endif %}</i></div>
                                 {% if user.first_name or user.last_name %}
                                 <div class="h7 mb-0 text-gray-600"><small><i class="fas fa-user"></i> {{ user.first_name}} {{ user.last_name}}</small></div>
                                 {% endif %}

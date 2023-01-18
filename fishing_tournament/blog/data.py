@@ -17,13 +17,9 @@ def get_user_scores_koenigsklasse(request):
     return get_user_scores(request, data_utils.UserScoresKoenigsklasse)
 
 
-def get_user_scores_rotauge(request):
-    return get_user_scores(request, data_utils.UserScoresRotauge)
+def get_user_scores_schleie(request):
+    return get_user_scores(request, data_utils.UserScoresSchleie)
 
 
-def get_user_scores_wels(request):
-    return get_user_scores(request, data_utils.UserScoresWels)
-
-
-def get_user_scores_barbe(request):
-    return get_user_scores(request, data_utils.UserScoresBarbe)
+def get_user_scores_karpfen(request):
+    return get_user_scores(request, data_utils.UserScoresKarpfen)
