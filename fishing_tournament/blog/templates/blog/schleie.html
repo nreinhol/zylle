@@ -18,6 +18,9 @@
                         <th><i class="fas fa-trophy"></i></th>
                         <th>Teilnehmer</th>
                         <th>Punkte</th>
+                        <th>1. Schleie</th>
+                        <th>2. Schleie</th>
+                        <th>3. Schleie</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,6 +29,9 @@
                                 <td>{{ userscore.position }}</td>
                                 <td><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></td>
                                 <td>{{ userscore.score }}</td>
+                                {% for fish in userscore.fishes %}
+                                    <td>{{ fish }}</td>
+                                {% endfor %}
                             </tr>
                         {% endfor %}
                     </tbody>

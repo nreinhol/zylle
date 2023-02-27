@@ -63,7 +63,6 @@ class UserScoresKoenigsklasse(UserScores):
     def __init__(self, request, user_id, year):
         super().__init__(request, user_id, year)
         self.koenigsklasse_dict = self.get_koenigsklasse_dict()
-        print(self.koenigsklasse_dict)
         self.score = self.calc_score()
         
         for fish_type, fish_length in self.koenigsklasse_dict.items():
@@ -102,20 +101,33 @@ class UserScoresKoenigsklasse(UserScores):
 class UserScoresSchleie(UserScores):
     def __init__(self, request, user_id, year):
         super().__init__(request, user_id, year)
-        self.score = self.get_schleie()
+        self.fishes = self.get_fishes()
+        self.score = self.calc_score()
     
-    def get_schleie(self):
-        fish_list = self.posts.filter(fish_type="Schleie", fish_length__gte=40).order_by("-fish_length")
-        longest = fish_list[0].fish_length if fish_list else 0
-        return float(f'{longest:.2f}')
+    def get_fishes(self):
+        filtered_query_set = self.posts.filter(fish_type="Schleie", fish_length__gte=40).order_by("-fish_length")[:3]
+        fish_list = [query_entry.fish_length for query_entry in filtered_query_set]
+        fish_list = fish_list + [0] * (3 - len(fish_list))  # fill with zeros
+        return fish_list
+
+        
+    def calc_score(self):
+        score = sum(self.fishes)
+        return float(f'{score:.2f}')
 
 
 class UserScoresKarpfen(UserScores):
     def __init__(self, request, user_id, year):
         super().__init__(request, user_id, year)
-        self.score = self.get_karpfen()
+        self.fishes = self.get_fishes()
+        self.score = self.calc_score()
     
-    def get_karpfen(self):
-        fish_list = self.posts.filter(fish_type="Karpfen", fish_length__gte=50).order_by("-fish_length")
-        longest = fish_list[0].fish_length if fish_list else 0
-        return float(f'{longest:.2f}')
+    def get_fishes(self):
+        filtered_query_set = self.posts.filter(fish_type="Karpfen", fish_length__gte=50).order_by("-fish_length")
+        fish_list = [query_entry.fish_length for query_entry in filtered_query_set]
+        fish_list = fish_list + [0] * (3 - len(fish_list))  # fill with zeros
+        return fish_list
+    
+    def calc_score(self):
+        score = sum(self.fishes)
+        return float(f'{score:.2f}')
