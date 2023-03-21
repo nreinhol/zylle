@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from blog.views import (
     rules,
+    sponsors,
     table,
     dashboard,
     koenigsklasse,
@@ -66,6 +67,7 @@ urlpatterns = [
     path('posts/new/', PostCreateView.as_view(), name='post-create'),
     path('table/', table, name='table'),
     path('rules/', rules, name='rules'),
+    path('sponsors/', sponsors, name='sponsors')
 ]
 
 if settings.DEBUG:

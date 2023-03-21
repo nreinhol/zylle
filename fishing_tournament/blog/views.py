@@ -121,3 +121,8 @@ def table(request):
 @login_required
 def rules(request):
     return render(request, 'blog/rules.html')
+
+
+@login_required
+def sponsors(request):
+    return render(request, 'blog/sponsors.html')
