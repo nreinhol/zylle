@@ -7,19 +7,6 @@ from .models import Post
 
 COMPETITION_YEAR = 2023
 
-FISH_FACTOR_KOENIGSKLASSE = {
-    "Barsch": 2.4,
-    "Hecht": 1,
-    "Zander": 1.4,
-    "Rapfen": 2.4
-}
-
-LENGTH_FILTER_KOENIGSKLASSE = {
-    "Barsch": 25,
-    "Hecht": 60,
-    "Zander": 50,
-    "Rapfen": 25
-}
 
 class Fishes(Enum):
     Barsch = 2.4, 25
