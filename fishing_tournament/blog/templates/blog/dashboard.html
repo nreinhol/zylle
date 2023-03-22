@@ -13,46 +13,53 @@
     {% for scores_list in ScoresList %}
         <div style="margin-bottom:5px; margin-top: 40px; margin-left: 15px;">
             {% if forloop.counter == 1 %}
-            <div class="h4 font-weight-bold text-primary">KÖNIGSKLASSE:</div>
+            <div class="h4 text-primary">KÖNIGSKLASSE</div>
             {% endif %}
 
             {% if forloop.counter == 2 %}
-            <div class="h4 font-weight-bold text-primary">SCHLEIE:</div>
+            <div class="h4 text-primary">SCHLEIE</div>
             {% endif %}
 
             {% if forloop.counter == 3 %}
-            <div class="h4 font-weight-bold text-primary">KARPFEN:</div>
+            <div class="h4 text-primary">KARPFEN</div>
             {% endif %}
         </div>
 
+        <div class="row">
         {% for userscore in scores_list %}
-            <div class="col-sm mb-1">
+        
+            <div class="col-lg-4 mb-2">
                 <div class="card shadow">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             
-                            <div class="col-5">
+                            <div class="col-3 text-left">
                                 {% if forloop.counter == 1 %}
-                                    <img src="../../../media/logos/first.svg" width="50" alt="" class="center">
+                                    <img src="../../../media/logos/first.svg" width="35" alt="" class="center">
                                 {% endif %}
 
                                 {% if forloop.counter == 2 %}
-                                    <img src="../../../media/logos/second.svg" width="50" alt="" class="center">
+                                    <img src="../../../media/logos/second.svg" width="30" alt="" class="center">
                                 {% endif %}
 
                                 {% if forloop.counter == 3 %}
-                                    <img src="../../../media/logos/third.svg" width="50" alt="" class="center">
+                                    <img src="../../../media/logos/third.svg" width="25" alt="" class="center">
                                 {% endif %}
                             </div>
                             
-                            <div class="col text-center">
+                            <div class="col-3 text-left">
                                 {% thumbnail userscore.img "100x100" crop="center" as im %}
-                                <img class="img-profile rounded-circle" src="{{ im.url }}" style="width: 3rem; height: 3rem;">
+                                <a href="{% url 'profile-detail' userscore.user_id %}">
+                                    <img class="img-profile rounded-circle" src="{{ im.url }}" style="width: 4rem; height: 4rem;">
+                                </a>
                                 {% endthumbnail %}
-                                <div class="font-weight-bold text-primary"><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></div>
+                            </div>
+
+                            <div class="col-3 text-left">
+                                <div class="small text-primary"><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></div>
                             </div>
                             
-                            <div class="col text-right">
+                            <div class="col-3 text-right">
                                 <div class="small text-primary">Punkte:</div>
                                 <div class="h5 font-weight-bold text-primary">{{ userscore.score }}</div>
                             </div>
@@ -61,7 +68,10 @@
                     </div> 
                 </div>
             </div>
+        
+            
         {% endfor %}
+    </div>
     {% endfor %}
         
         
