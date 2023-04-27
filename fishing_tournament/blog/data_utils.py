@@ -110,7 +110,7 @@ class UserScoresKarpfen(UserScores):
         self.score = self.calc_score()
     
     def get_fishes(self):
-        filtered_query_set = self.posts.filter(fish_type="Karpfen", fish_length__gte=50).order_by("-fish_length")
+        filtered_query_set = self.posts.filter(fish_type="Karpfen", fish_length__gte=50).order_by("-fish_length")[:3]
         fish_list = [query_entry.fish_length for query_entry in filtered_query_set]
         fish_list = fish_list + [0] * (3 - len(fish_list))  # fill with zeros
         return fish_list
