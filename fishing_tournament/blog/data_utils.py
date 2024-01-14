@@ -5,18 +5,22 @@ import json
 
 from .models import Post
 
-COMPETITION_YEAR = 2023
+COMPETITION_YEAR = 2024
 
 
 class Fishes(Enum):
-    Barsch = 2.4, 25
-    Hecht = 1, 60
-    Zander = 1.4, 50
-    Rapfen = 1, 45
+    Barsch = (2.4, 25, 3)
+    Hecht = (1, 60, 1)
+    Zander = (1.4, 50, 5)
+    Rapfen = (1, 45, 1)
+    Barbe = (1, 0, 1)
     
-    def __init__(self, factor, bound):
-        self.factor = factor
-        self.bound = bound
+    def __new__(cls, factor, bound, count):
+        obj = object.__new__(cls)
+        obj.factor = factor
+        obj.bound = bound
+        obj.count = count
+        return obj
 
 
 def get_all_user_ids(request):
@@ -56,32 +60,24 @@ class UserScoresKoenigsklasse(UserScores):
             setattr(self, fish_type, fish_length)
 
     def get_koenigsklasse_dict(self):
-        keys = ["1_Barsch", "2_Barsch", "3_Barsch", "1_Hecht", "2_Hecht", "3_Hecht", "1_Zander", "2_Zander", "3_Zander", "Rapfen"]
+        keys = ["1_Hecht", "1_Zander", "2_Zander", "3_Zander", "4_Zander", "5_Zander", "1_Barsch", "2_Barsch", "3_Barsch", "1_Rapfen", "1_Barbe"]
         koenigsklasse_dict = {**dict.fromkeys(keys, "-")}
         for fish in Fishes:
             filtered_query_set = self.posts.filter(fish_type=fish.name, fish_length__gte=fish.bound)
-            if filtered_query_set:
-                if fish is Fishes.Rapfen:
-                    koenigsklasse_dict[fish.name] = filtered_query_set.order_by("-fish_length")[0].fish_length
-                else:
-                    for i, entry in enumerate(filtered_query_set.order_by("-fish_length")[:3], 1):
-                        key = f"{i}_{fish.name}"
-                        koenigsklasse_dict[key] = entry.fish_length 
+            if filtered_query_set:    
+                for i, entry in enumerate(filtered_query_set.order_by("-fish_length")[:fish.count], 1):
+                    key = f"{i}_{fish.name}"
+                    koenigsklasse_dict[key] = entry.fish_length
         return koenigsklasse_dict                 
 
 
     def calc_score(self):
         score = 0
         for fish in Fishes:
-            if fish is not Fishes.Rapfen:
-                for i in range(3):
-                    key = f"{i+1}_{fish.name}"
-                    length = self.koenigsklasse_dict[key]
-                    score += length * fish.factor if isinstance(length, float) else 0
-            else:
-                length = self.koenigsklasse_dict[fish.name]
-                score +=  length * fish.factor if isinstance(length, float) else 0
-
+            for i in range(fish.count):
+                key = f"{i+1}_{fish.name}"
+                length = self.koenigsklasse_dict[key]
+                score += length * fish.factor if isinstance(length, float) else 0
         return float(f'{score:.2f}')
 
 

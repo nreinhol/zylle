@@ -17,16 +17,17 @@
                         <th><i class="fas fa-trophy"></i></th>
                         <th>Teilnehmer</th>
                         <th>Punkte</th>
-                        <th>1. Barsch</th>
-                        <th>2. Barsch</th>
-                        <th>3. Barsch</th>
-                        <th>1. Hecht</th>
-                        <th>2. Hecht</th>
-                        <th>3. Hecht</th>
                         <th>1. Zander</th>
                         <th>2. Zander</th>
                         <th>3. Zander</th>
+                        <th>4. Zander</th>
+                        <th>5. Zander</th>
+                        <th>1. Barsch</th>
+                        <th>2. Barsch</th>
+                        <th>3. Barsch</th>
+                        <th>Hecht</th>
                         <th>Rapfen</th>
+                        <th>Barbe</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,23 +36,24 @@
                                 <td>{{ userscore.position }}</td>
                                 <td><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></td>
                                 <td>{{ userscore.score }}</td>
+                                <td>{{ userscore.1_Zander }}</td>
+                                <td>{{ userscore.2_Zander }}</td>
+                                <td>{{ userscore.3_Zander }}</td>
+                                <td>{{ userscore.4_Zander }}</td>
+                                <td>{{ userscore.5_Zander }}</td>
                                 <td>{{ userscore.1_Barsch }}</td>
                                 <td>{{ userscore.2_Barsch }}</td>
                                 <td>{{ userscore.3_Barsch }}</td>
                                 <td>{{ userscore.1_Hecht }}</td>
-                                <td>{{ userscore.2_Hecht }}</td>
-                                <td>{{ userscore.3_Hecht }}</td>
-                                <td>{{ userscore.1_Zander }}</td>
-                                <td>{{ userscore.2_Zander }}</td>
-                                <td>{{ userscore.3_Zander }}</td>
-                                <td>{{ userscore.Rapfen }}</td>
+                                <td>{{ userscore.1_Rapfen }}</td>
+                                <td>{{ userscore.1_Barbe }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
-            <div class="small" style="margin-top:15px; font-size:11px">1) Barsch: 2,4x, Hecht: 1x, Zander: 1,4x, Rapfen: 1x </div>
-            <div class="small" style="font-size:11px">2) Barsch ab 25cm, Hecht ab 60cm, Zander ab 50cm, Rapfen ab 45cm </div>
+            <div class="small" style="margin-top:15px; font-size:11px">1) Barsch: 2,4x, Hecht: 1x, Zander: 1,4x, Rapfen: 1x, Barbe: 1x </div>
+            <div class="small" style="font-size:11px">2) Barsch ab 25cm, Hecht ab 60cm, Zander ab 50cm, Rapfen ab 45cm, Barbe keine Beschränkung </div>
             <div class="small" style="margin-bottom: 40px; font-size:11px">3) alle Längenangaben in cm</div>
             
 

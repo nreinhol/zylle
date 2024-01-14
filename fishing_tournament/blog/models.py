@@ -16,6 +16,7 @@ class Post(models.Model):
         ('Wels', 'Wels'),
         ('Barbe', 'Barbe'),
         ('Rapfen', 'Rapfen'),
+        ('Alande', 'Alande')
     )
 
     fish_type = models.CharField(max_length=10, choices=fish_choices, verbose_name='Fisch')
