@@ -17,8 +17,8 @@ def get_user_scores_koenigsklasse(request):
     return get_user_scores(request, data_utils.UserScoresKoenigsklasse)
 
 
-def get_user_scores_schleie(request):
-    return get_user_scores(request, data_utils.UserScoresSchleie)
+def get_user_scores_alande(request):
+    return get_user_scores(request, data_utils.UserScoresAlande)
 
 
 def get_user_scores_karpfen(request):

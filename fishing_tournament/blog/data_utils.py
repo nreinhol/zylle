@@ -81,14 +81,14 @@ class UserScoresKoenigsklasse(UserScores):
         return float(f'{score:.2f}')
 
 
-class UserScoresSchleie(UserScores):
+class UserScoresAlande(UserScores):
     def __init__(self, request, user_id, year):
         super().__init__(request, user_id, year)
         self.fishes = self.get_fishes()
         self.score = self.calc_score()
     
     def get_fishes(self):
-        filtered_query_set = self.posts.filter(fish_type="Schleie", fish_length__gte=40).order_by("-fish_length")[:3]
+        filtered_query_set = self.posts.filter(fish_type="Aland", fish_length__gte=0).order_by("-fish_length")[:3]
         fish_list = [query_entry.fish_length for query_entry in filtered_query_set]
         fish_list = fish_list + [0] * (3 - len(fish_list))  # fill with zeros
         return fish_list

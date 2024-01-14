@@ -70,7 +70,7 @@ def dashboard(request):
     context = {
         'ScoresList': [
             data.get_user_scores_koenigsklasse(request)[:3],
-            data.get_user_scores_schleie(request)[:3],
+            data.get_user_scores_alande(request)[:3],
             data.get_user_scores_karpfen(request)[:3]
         ]
     }
@@ -94,11 +94,11 @@ def rotauge(request):
 
 
 @login_required
-def schleie(request):
+def alande(request):
     context = {
-        'UserScoresSchleie': data.get_user_scores_schleie(request)
+        'UserScoresAlande': data.get_user_scores_alande(request)
     }
-    return render(request, 'blog/schleie.html', context)
+    return render(request, 'blog/alande.html', context)
 
 
 @login_required

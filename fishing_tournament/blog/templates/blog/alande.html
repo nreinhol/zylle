@@ -6,7 +6,7 @@
 
     <!-- HEADER SVG -->
     <div class=text-center style="margin-bottom:20px">
-        <img src="../../../media/logos/logo_schleie.svg" width="200" alt="" class="center">
+        <img src="../../../media/logos/logo_aland.svg" width="200" alt="" class="center">
     </div>
 
     <!-- BEGIN SCHLEIE CARD -->
@@ -18,13 +18,13 @@
                         <th><i class="fas fa-trophy"></i></th>
                         <th>Teilnehmer</th>
                         <th>Punkte</th>
-                        <th>1. Schleie</th>
-                        <th>2. Schleie</th>
-                        <th>3. Schleie</th>
+                        <th>1. Aland</th>
+                        <th>2. Aland</th>
+                        <th>3. Aland</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for userscore in UserScoresSchleie %}
+                        {% for userscore in UserScoresAlande %}
                             <tr>
                                 <td>{{ userscore.position }}</td>
                                 <td><a href="{% url 'profile-detail' userscore.user_id %}">{{ userscore.username }}</a></td>
@@ -37,8 +37,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="small" style="margin-top:15px; font-size:11px">1) Schleie: 1x </div>
-            <div class="small" style="margin-bottom: 40px; font-size:11px">2) Schleie ab 40cm </div>
+            <div class="small" style="margin-top:15px; font-size:11px">1) Aland: 1x </div>
+            <div class="small" style="margin-bottom: 40px; font-size:11px">2) Aland keine Größenbeschränkung </div>
         </div>
     <!-- END WELS CARD -->
 
